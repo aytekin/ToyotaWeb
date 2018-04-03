@@ -9,7 +9,8 @@ define(function (require) {
             '': 'city'  ,
             'rfentry':'rfentry',
             'place':'place',
-            'company':'company'
+            'company':'company',
+            'user':'user'
 
         },
         city: function () {
@@ -18,16 +19,20 @@ define(function (require) {
         },
 
         place: function () {
-            var CityView = require('components/place/PlaceView');
-            showView(new CityView());
+            var PlaceView = require('components/place/PlaceView');
+            showView(new PlaceView());
         },
         rfentry:function () {
-            var CityView = require('components/rfentry/RfentryView');
-            showView(new CityView());
+            var RfentryView = require('components/rfentry/RfentryView');
+            showView(new RfentryView());
         },
         company:function () {
-            var CityView = require('components/company/CompanyView');
-            showView(new CityView());
+            var CompanyView = require('components/company/CompanyView');
+            showView(new CompanyView());
+        },
+        user:function () {
+            var UserView = require('components/userRegister/UserRegisterView');
+            showView(new UserView());
         }
     });
 
