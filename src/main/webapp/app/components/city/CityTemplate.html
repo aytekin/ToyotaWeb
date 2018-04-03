@@ -1,0 +1,37 @@
+<div class="col-md-12 mt-5 text-center">
+    <form id="cityForm" class="form-inline mx-auto" style="width: 300px">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" id="cityName" placeholder="Şehir Adı">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Kaydet</button>
+    </form>
+</div>
+
+<table class="table table-bordered mt-2 text-center">
+    <thead class="thead-light">
+    <tr>
+        <th class="w-75">Şehir Adıı</th>
+        <th>İşlemler</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each cities}}
+    <tr>
+        <td>
+            <span class="normalModeElement">{{cityName}}</span>
+            <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{cityName}}">
+        </td>
+        <td>
+            <button class="btn btn-success btn-sm editCity normalModeElement" data-id="{{id}}">Düzenle</button>
+            <button class="btn btn-primary btn-sm updateCity editModeElement" data-id="{{id}}" style="display: none">Kaydet</button>
+            <button class="btn btn-danger btn-sm deleteCity normalModeElement" data-id="{{id}}">Sil</button>
+            <button class="btn btn-danger btn-sm cancel editModeElement" data-id="{{id}}" style="display: none">İptal</button>
+        </td>
+    </tr>
+    {{else}}
+    <tr>
+        <td colspan="2">Hiç şehir eklenmemiş!</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
