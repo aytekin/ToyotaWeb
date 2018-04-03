@@ -8,7 +8,8 @@ define(function (require) {
         routes: {
             '': 'city'  ,
             'rfentry':'rfentry',
-            'place':'place'
+            'place':'place',
+            'company':'company'
 
         },
         city: function () {
@@ -22,6 +23,10 @@ define(function (require) {
         },
         rfentry:function () {
             var CityView = require('components/rfentry/RfentryView');
+            showView(new CityView());
+        },
+        company:function () {
+            var CityView = require('components/company/CompanyView');
             showView(new CityView());
         }
     });
