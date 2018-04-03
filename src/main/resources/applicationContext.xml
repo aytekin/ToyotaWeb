@@ -43,6 +43,7 @@
             <ref bean="cityResource"/>
             <ref bean="placeResource"/>
             <ref bean="rfentryResource"/>
+            <ref bean="companyResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean='jacksonProvider'/>
