@@ -16,42 +16,35 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
             this.cities.fetch({reset: true});
         },
         events: {
-            'submit #cityForm': 'saveCity',
-            'click .deleteCity': 'deleteCity',
-            'click .editCity': 'openEditMode',
-            'click .cancel': 'cancelUpdate',
-            'click .updateCity': 'updateCity'
-        },
-        saveCity: function (e) {
-            e.preventDefault();
-            var city = new CityModel({
-                                        userName: $("#userName").val(),
-                                        userPassword:$("#userPassword").val(),
-                                        userNickname:$("#userNickname").val()
-
-                                     });
-            this.cities.create(city, {wait: true});
-        },
-        deleteCity: function (e) {
-            var id = $(e.currentTarget).data("id");
-            this.cities.findWhere({id: id}).destroy();
-        },
-        updateCity: function (e) {
-            var row = $(e.currentTarget).closest("tr");
-            var newCityName = row.find("input").val();
-            var id = $(e.currentTarget).data("id");
-            var city = this.cities.findWhere({id: id});
-            city.set({userName: newCityName});
-            city.save();
+            'submit #registerForm': 'registerForm'
 
         },
-        openEditMode: function (e) {
-            var row = $(e.currentTarget).closest("tr");
-            row.find(".editModeElement").show();
-            row.find(".normalModeElement").hide();
-        },
-        cancelUpdate: function () {
-            this.render();
+        registerForm: function (e) {
+
+            if (document.getElementById("userName").value == "") {
+                alert("User Name is cannot be empty!");
+            }
+            else if (document.getElementById("userNickname").value == "") {
+                alert("User nickname cannot be empty!");
+            }
+            else if (document.getElementById("userPassword").value == "" || document.getElementById("userPassword1").value == "") {
+                alert("User Password cannot be empty!");
+            }
+            else if(document.getElementById("userPassword").value != document.getElementById("userPassword1").value){
+                alert("Passwords do not match")
+            }
+            else if(document.getElementById("userPassword").value.length < 8){
+                alert("Password must be at least 8 characters")
+            }else{
+                e.preventDefault();
+                var city = new CityModel({
+                    userName: $("#userName").val(),
+                    userPassword:$("#userPassword").val(),
+                    userNickname:$("#userNickname").val()
+
+                });
+                this.cities.create(city, {wait: true});
+            }
         },
         render: function () {
             this.$el.html(cityTemplate({cities: this.cities.toJSON()}));

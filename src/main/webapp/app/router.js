@@ -10,7 +10,7 @@ define(function (require) {
             'rfentry':'rfentry',
             'place':'place',
             'company':'company',
-            'user':'user'
+            'register':'user'
 
         },
         city: function () {
