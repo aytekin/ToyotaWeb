@@ -10,7 +10,8 @@ define(function (require) {
             'rfentry':'rfentry',
             'place':'place',
             'company':'company',
-            'register':'user'
+            'register':'register',
+            'epermit':'epermit'
 
         },
         city: function () {
@@ -30,8 +31,12 @@ define(function (require) {
             var CompanyView = require('components/company/CompanyView');
             showView(new CompanyView());
         },
-        user:function () {
+        register:function () {
             var UserView = require('components/userRegister/UserRegisterView');
+            showView(new UserView());
+        },
+        epermit:function () {
+            var UserView = require('components/epermit/EpermitView');
             showView(new UserView());
         }
     });

@@ -45,6 +45,7 @@
             <ref bean="rfentryResource"/>
             <ref bean="companyResource"/>
             <ref bean="userResource"/>
+            <ref bean="epermitResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean='jacksonProvider'/>
