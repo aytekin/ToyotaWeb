@@ -37,15 +37,28 @@ public class UserResource
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response saveUser(UserDto userDto) {
-        User user;
+        int counter = 0;
+        List<UserDto> userDtoList;
+        userDtoList = userService.findAllUsers();
 
-        try {
-            user = userService.saveUser(userDto);
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            for(UserDto u : userDtoList){
+                if(u.getUserNickname()== userDto.getUserNickname())
+                    counter++;
+            }
+        if(counter == 0){
+            User user;
+
+            try {
+                user = userService.saveUser(userDto);
+            } catch (Exception e) {
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            }
+
+            return Response.ok(user).build();
         }
+        else
+            return Response.ok("Aynı kullanıcı isimli").build();
 
-        return Response.ok(user).build();
     }
     @PUT
     @Path("/{id}")

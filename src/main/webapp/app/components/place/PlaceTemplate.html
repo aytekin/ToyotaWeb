@@ -3,15 +3,15 @@
         <div class="form-group mx-sm-3 mb-2">
             <input type="text" class="form-control" id="placeName" placeholder="Şehir Adı">
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Kaydet</button>
+        <button type="submit" class="btn btn-primary mb-2">Save</button>
     </form>
 </div>
 
 <table class="table table-bordered mt-2 text-center">
     <thead class="thead-light">
     <tr>
-        <th class="w-75">placsadeeee</th>
-        <th>İşlemler</th>
+        <th class="w-75">Places</th>
+        <th>transactions</th>
     </tr>
     </thead>
     <tbody>
@@ -22,10 +22,10 @@
             <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{placeName}}">
         </td>
         <td>
-            <button class="btn btn-success btn-sm editCity normalModeElement" data-id="{{id}}">Düzeasdsadsanle</button>
-            <button class="btn btn-primary btn-sm updateCity editModeElement" data-id="{{id}}" style="display: none">Kaydet</button>
-            <button class="btn btn-danger btn-sm deleteCity normalModeElement" data-id="{{id}}">Sil</button>
-            <button class="btn btn-danger btn-sm cancel editModeElement" data-id="{{id}}" style="display: none">İptal</button>
+            <button class="btn btn-success btn-sm editCity normalModeElement" data-id="{{id}}">Edit</button>
+            <button class="btn btn-primary btn-sm updateCity editModeElement" data-id="{{id}}" style="display: none">Save</button>
+            <button class="btn btn-danger btn-sm deleteCity normalModeElement" data-id="{{id}}">Delete</button>
+            <button class="btn btn-danger btn-sm cancel editModeElement" data-id="{{id}}" style="display: none">Cancel</button>
         </td>
     </tr>
     {{else}}

@@ -21,13 +21,28 @@ define(['text!components/place/PlaceTemplate.html'], function (template) {
         },
 
         saveCity: function (e) {
-            if ($("#placeName").val().toString()!=""){
+            var counter = 0;
+            var x = $("#placeName").val();
+            for(var i = 0; i < this.cities.length;i++){
+                if(this.cities.models[i].get("placeName") == x)
+                    counter++;
+            }
+            if(counter != 0){
+                alert("aynı isme sahip")
+
+            }
+            else if ($('#placeName').val().length < 1 ){
+                alert("this place is cannot be empty!")
+
+
+
+            }else{
                 e.preventDefault();
                 var city = new CityModel({placeName: $("#placeName").val()});
                 this.cities.create(city, {wait: true});
             }
-            else
-                alert("Place name cannot be empty");
+
+            this.render();
         },
         deleteCity: function (e) {
             var id = $(e.currentTarget).data("id");

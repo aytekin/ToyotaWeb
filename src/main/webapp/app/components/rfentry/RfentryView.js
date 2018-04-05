@@ -23,26 +23,27 @@ define(['text!components/rfentry/RfentryTemplate.html'], function (template) {
         saveCity: function (e) {
             var counter = 0;
             var x = $("#rfentryName").val();
-            for(var i = 0; i < this.cities.length;i++)
-                if(this.cities.get("rfentryName")== (x)){
+            for(var i = 0; i < this.cities.length;i++){
+                if(this.cities.models[i].get("rfentryName") == x)
                     counter++;
+            }
+            if(counter != 0){
+                alert("aynı isme sahip")
 
-                }
+            }
+            else if ($('#rfentryName').val().length < 1 ){
+                alert("this place is cannot be empty!")
 
 
 
-            console.log(counter);
-
-
-
-            if ($('#rfentryName').val().length > 0 ){
-
+            }else{
                 e.preventDefault();
                 var city = new CityModel({rfentryName: $("#rfentryName").val()});
                 this.cities.create(city, {wait: true});
+            }
 
-            }else
-                alert("this place is cannot be empty!")
+            this.render();
+
 
         },
         deleteCity: function (e) {

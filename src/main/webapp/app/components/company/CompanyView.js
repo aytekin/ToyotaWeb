@@ -21,18 +21,29 @@ define(['text!components/company/CompanyTemplate.html'], function (template) {
         },
 
         saveCity: function (e) {
-            var id =$(e.currentTarget).data("id");
-            var x = this.cities.model.toString();
-            console.log(x);
+            var counter = 0;
+            var x = $("#companyName").val();
+            for(var i = 0; i < this.cities.length;i++){
+                if(this.cities.models[i].get("companyName") == x)
+                    counter++;
+            }
+            if(counter != 0){
+                alert("aynı isme sahip")
 
-            if ($("#companyName").val().toString()!=""){
+            }
+            else if ($('#companyName').val().length < 1 ){
+                alert("this place is cannot be empty!")
+
+
+
+            }else{
                 e.preventDefault();
-
                 var city = new CityModel({companyName: $("#companyName").val()});
                 this.cities.create(city, {wait: true});
             }
-            else
-                alert("Place name cannot be empty");
+
+            this.render();
+
         },
         deleteCity: function (e) {
             var id = $(e.currentTarget).data("id");

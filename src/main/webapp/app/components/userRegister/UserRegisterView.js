@@ -35,15 +35,36 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
             }
             else if(document.getElementById("userPassword").value.length < 8){
                 alert("Password must be at least 8 characters")
-            }else{
-                e.preventDefault();
-                var city = new CityModel({
-                    userName: $("#userName").val(),
-                    userPassword:$("#userPassword").val(),
-                    userNickname:$("#userNickname").val()
+            }
+            else{
+                var counter = 0;
+                var x = $("#userNickname").val();
+                for(var i = 0; i < this.cities.length;i++){
+                    if(this.cities.models[i].get("userNickname") == x)
+                        counter++;
+                }
+                if(counter != 0){
+                    alert("aynı isme sahip")
 
-                });
-                this.cities.create(city, {wait: true});
+                }
+                else if ($('#userNickname').val().length < 1 ){
+                    alert("this place is cannot be empty!")
+
+
+
+                }else{
+                    e.preventDefault();
+                    var city = new CityModel({
+                        userName: $("#userName").val(),
+                        userPassword:$("#userPassword").val(),
+                        userNickname:$("#userNickname").val()
+
+                    });
+                    this.cities.create(city, {wait: true});
+                }
+
+                this.render();
+
             }
         },
         render: function () {
