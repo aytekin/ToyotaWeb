@@ -6,13 +6,13 @@ define(function (require) {
             require('utilities'); //Utility fonksiyonlarını her yerde kullanmak için
         },
         routes: {
-            '': 'city'  ,
+            'city': 'city'  ,
             'rfentry':'rfentry',
             'place':'place',
             'company':'company',
             'register':'register',
-            'epermit':'epermit'
-
+            'epermit':'epermit',
+            'user':'user'
         },
         city: function () {
             var CityView = require('components/city/CityView');

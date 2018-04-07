@@ -32,7 +32,7 @@ public class Epermit {
     @Column(name = "EXIT_TIME")
     private Time exitTime;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "ENTRY_COMPANY_ID")
     private Company entryCompany;
 
@@ -44,7 +44,11 @@ public class Epermit {
     @JoinColumn(name = "ACCOMPANY_PERSONAL_ID")
     private User accompanyPersonal;
 
-    @Column(name = "WS_EDUCATİON")
+    @ManyToOne
+    @JoinColumn(name = "ENTRY_PLACE_ID")
+    private Place entryPlaceId;
+
+    @Column(name = "WS_EDUCATION")
     private int wsEducation;
 
     public Integer getEpermitId() {
@@ -125,5 +129,13 @@ public class Epermit {
 
     public void setWsEducation(int wsEducation) {
         this.wsEducation = wsEducation;
+    }
+
+    public Place getEntryPlaceId() {
+        return entryPlaceId;
+    }
+
+    public void setEntryPlaceId(Place entryPlaceId) {
+        this.entryPlaceId = entryPlaceId;
     }
 }

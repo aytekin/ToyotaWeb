@@ -26,7 +26,6 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             e.preventDefault();
 
             var city = new CityModel({
-
                 epermit_names:$("#epermit_names").val(),
                 entryDate:$("#entryDate").val(),
                 exitDate:$("#exitDate").val(),
@@ -35,9 +34,10 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
                 entryCompany:$("#entryCompany").val(),
                 reasonfentry:$("#reasonfentry").val(),
                 accompanyPersonal:$("#accompanyPersonal").val(),
+                entryPlaceId : $("#entryPlaceId").val(),
                 wsEducation:$("#wsEducation").val()
-
             });
+
             this.cities.create(city, {wait: true});
         },
         deleteCity: function (e) {

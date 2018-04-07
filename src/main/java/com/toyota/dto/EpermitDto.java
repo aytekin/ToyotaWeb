@@ -1,9 +1,6 @@
 package com.toyota.dto;
 
-import com.toyota.domain.Company;
-import com.toyota.domain.Epermit;
-import com.toyota.domain.Rfentry;
-import com.toyota.domain.User;
+import com.toyota.domain.*;
 
 import java.sql.Time;
 import java.util.Date;
@@ -26,13 +23,17 @@ public class EpermitDto {
 
     private Rfentry reasonfentry;
 
+    private Place entryPlaceId;
+
     private User accompanyPersonal;
 
     private int wsEducation;
 
-    public EpermitDto() {
-    }
 
+    public EpermitDto()
+    {
+
+    }
     public EpermitDto(Epermit epermit) {
         this.epermitId = epermit.getEpermitId();
         this.epermit_names = epermit.getEpermit_names();
@@ -40,6 +41,7 @@ public class EpermitDto {
         this.exitDate = epermit.getExitDate();
         this.enterTime = epermit.getEnterTime();
         this.exitTime = epermit.getExitTime();
+        this.entryPlaceId= epermit.getEntryPlaceId();
         this.entryCompany = epermit.getEntryCompany();
         this.reasonfentry = epermit.getReasonfentry();
         this.accompanyPersonal = epermit.getAccompanyPersonal();
@@ -125,4 +127,13 @@ public class EpermitDto {
     public void setWsEducation(int wsEducation) {
         this.wsEducation = wsEducation;
     }
+
+    public Place getEntryPlaceId() {
+        return entryPlaceId;
+    }
+
+    public void setEntryPlaceId(Place entryPlaceId) {
+        this.entryPlaceId = entryPlaceId;
+    }
+
 }

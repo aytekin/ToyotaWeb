@@ -42,6 +42,7 @@ public class EpermitService {
         epermit.setAccompanyPersonal(epermitDto.getAccompanyPersonal());
         epermit.setWsEducation(epermitDto.getWsEducation());
         epermit.setReasonfentry(epermitDto.getReasonfentry());
+        epermit.setEntryPlaceId(epermitDto.getEntryPlaceId());
 
         epermitDao.persist(epermit);
         return epermit;
@@ -61,6 +62,7 @@ public class EpermitService {
         epermit.setAccompanyPersonal(epermitDto.getAccompanyPersonal());
         epermit.setWsEducation(epermitDto.getWsEducation());
         epermit.setReasonfentry(epermitDto.getReasonfentry());
+        epermit.setEntryPlaceId(epermitDto.getEntryPlaceId());
 
         epermitDao.merge(epermit);
         return epermit;
