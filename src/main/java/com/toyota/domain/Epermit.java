@@ -51,6 +51,17 @@ public class Epermit {
     @Column(name = "WS_EDUCATION")
     private int wsEducation;
 
+    @Column(name = "EPERMIT_STATUS")
+    private int epermitStatus;
+
+    public int getEpermitStatus() {
+        return epermitStatus;
+    }
+
+    public void setEpermitStatus(int epermitStatus) {
+        this.epermitStatus = epermitStatus;
+    }
+
     public Integer getEpermitId() {
         return epermitId;
     }

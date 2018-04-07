@@ -23,17 +23,17 @@ public class EpermitDto {
 
     private Rfentry reasonfentry;
 
-    private Place entryPlaceId;
-
     private User accompanyPersonal;
 
     private int wsEducation;
 
+    private int epermitStatus;
 
-    public EpermitDto()
-    {
+    private Place entryPlaceId;
 
+    public EpermitDto() {
     }
+
     public EpermitDto(Epermit epermit) {
         this.epermitId = epermit.getEpermitId();
         this.epermit_names = epermit.getEpermit_names();
@@ -41,11 +41,21 @@ public class EpermitDto {
         this.exitDate = epermit.getExitDate();
         this.enterTime = epermit.getEnterTime();
         this.exitTime = epermit.getExitTime();
-        this.entryPlaceId= epermit.getEntryPlaceId();
         this.entryCompany = epermit.getEntryCompany();
         this.reasonfentry = epermit.getReasonfentry();
         this.accompanyPersonal = epermit.getAccompanyPersonal();
         this.wsEducation = epermit.getWsEducation();
+        this.entryPlaceId = epermit.getEntryPlaceId();
+        this.epermitStatus = epermit.getEpermitStatus();
+
+    }
+
+    public int getEpermitStatus() {
+        return epermitStatus;
+    }
+
+    public void setEpermitStatus(int epermitStatus) {
+        this.epermitStatus = epermitStatus;
     }
 
     public Integer getEpermitId() {
@@ -135,5 +145,4 @@ public class EpermitDto {
     public void setEntryPlaceId(Place entryPlaceId) {
         this.entryPlaceId = entryPlaceId;
     }
-
 }
