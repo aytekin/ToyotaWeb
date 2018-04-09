@@ -12,7 +12,9 @@ define(function (require) {
             'company':'company',
             'register':'register',
             'epermit':'epermit',
-            'user':'user'
+            'user':'user',
+            'epconf':'epconf',
+            'wseconf':'wseconf'
         },
         city: function () {
             var CityView = require('components/city/CityView');
@@ -36,8 +38,16 @@ define(function (require) {
             showView(new UserView());
         },
         epermit:function () {
-            var UserView = require('components/epermit/EpermitView');
-            showView(new UserView());
+            var EpermitView = require('components/epermit/EpermitView');
+            showView(new EpermitView());
+        },
+        epconf:function () {
+            var EpConfView = require('components/epconfirmation/epermitConfirmationView');
+            showView(new EpConfView());
+        },
+        wseconf:function () {
+            var wseconfView = require('components/wseducationconfirm/wseducationConfirmView');
+            showView(new wseconfView());
         }
     });
 

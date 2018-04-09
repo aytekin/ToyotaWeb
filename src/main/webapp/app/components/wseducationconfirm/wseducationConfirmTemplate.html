@@ -1,0 +1,54 @@
+<div class="col-md-12 mt-5 text-center">
+    <h2>Pending Work Security Education Confirmation</h2></br>
+    <table class="table table-bordered mt-2 text-center">
+        <thead class="thead-light">
+        <tr>
+            <th>Entry Persons</th>
+            <th>Entry Date</th>
+            <th>Exit Date</th>
+            <th>Company</th>
+            <th>Accompany Personal</th>
+            <th>WS Education Confirm</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each cities}}
+
+        <tr>
+            <td>
+                <span class="normalModeElement">{{epermit_names}}</span>
+                <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
+            </td>
+            <td>
+                <span class="normalModeElement">{{entryDate}}</span>
+                <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
+            </td>
+            <td>
+                <span class="normalModeElement">{{exitDate}}</span>
+                <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
+            </td>
+            <td>
+                <span class="normalModeElement">{{entryCompany.companyName}}</span>
+                <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
+            </td>
+            <td>
+                <span class="normalModeElement">{{accompanyPersonal.userName}}</span>
+                <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
+            </td>
+
+            <td>
+                <button class="btn btn-success btn-sm confirmEntryPermit normalModeElement" data-id="{{epermitId}}">
+                    sad<i class="far fa-check-circle"></i>
+
+                </button>
+
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="6">Hiç şehir eklenmemiş!</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
