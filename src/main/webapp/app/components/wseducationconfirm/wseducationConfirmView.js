@@ -15,6 +15,7 @@ define(['text!components/wseducationconfirm/wseducationConfirmTemplate.html'], f
             this.cities = new CityCollection();
             this.listenTo(this.cities, "reset add change remove", this.render);
             this.cities.fetch({reset: true});
+
         },
         events: {
             'click .confirmEntryPermit':'confirmEntryPermit'
@@ -25,8 +26,6 @@ define(['text!components/wseducationconfirm/wseducationConfirmTemplate.html'], f
             var city = this.cities.findWhere({epermitId: id});
             city.set({wsEducation: value});
             city.save();
-            this.render();
-
         },
         render: function () {
             for(var i = 0;i<this.cities.length;i++){

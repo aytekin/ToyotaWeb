@@ -12,6 +12,7 @@ define(function (require) {
             'company':'company',
             'register':'register',
             'epermit':'epermit',
+            'accsesCheck':'accsesCheck',
             'user':'user',
             'epconf':'epconf',
             'wseconf':'wseconf'
@@ -20,7 +21,10 @@ define(function (require) {
             var CityView = require('components/city/CityView');
             showView(new CityView());
         },
-
+        accsesCheck: function () {
+            var CityView = require('components/accsesCheck/AccsesCheckView');
+            showView(new CityView());
+        },
         place: function () {
             var PlaceView = require('components/place/PlaceView');
             showView(new PlaceView());
@@ -50,6 +54,7 @@ define(function (require) {
             showView(new wseconfView());
         }
     });
+
 
     var initialize = function () {
         window.$router = new AppRouter;
