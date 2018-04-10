@@ -45,7 +45,6 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
                 }
                 if(counter != 0){
                     alert("aynı isme sahip")
-
                 }
                 else if ($('#userNickname').val().length < 1 ){
                     alert("this place is cannot be empty!")

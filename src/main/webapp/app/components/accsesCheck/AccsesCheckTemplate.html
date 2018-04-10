@@ -1,0 +1,62 @@
+
+<div class="form-group">
+    <label for="entryPlaceId">Firma Seciniz</label>
+    <select class="form-control" id="entryPlaceId">
+        {{#each companies}}
+        <option>{{companyName}}</option>
+        {{/each}}
+    </select>
+</div>
+
+<form id="cityForm" class="form-inline mx-auto" style="width: 300px">
+    <button type="submit" class="btn btn-primary mb-2">Kaydet</button>
+</form>
+
+
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th scope="col">Giris Yapacak Kisiler</th>
+        <th scope="col" id = "muhammed">date</th>
+        <th scope="col">05/07/2018</th>
+        <th scope="col">06/07/2018</th>
+        <th scope="col">07/07/2018</th>
+        <th scope="col">08/07/2018</th>
+        <th scope="col">09/07/2018</th>
+        <th scope="col">10/07/2018</th>
+    </tr>
+    </thead>
+    {{#each cities}}
+    <tbody>
+    <tr>
+        <th scope="row">{{epermit_names}}</th>
+        <td>{{enterTime}} / {{exitTime}} </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+    </tbody>
+    {{/each}}
+</table>
+
+<script>
+    var date = Date.now();
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+    document.getElementById("muhammed").innerHTML=formatDate(date);
+</script>

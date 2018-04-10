@@ -33,5 +33,9 @@ public class RfentryDto {
         this.id = rfentry.getRfentryId();
         this.RfentryName = rfentry.getRfentryName();
     }
+    public RfentryDto(int id)
+    {
+        this.id=id;
+    }
 
 }

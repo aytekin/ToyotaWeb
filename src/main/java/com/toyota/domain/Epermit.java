@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "epermit")
 @NamedQueries({
-        @NamedQuery(name = "Epermit.findAll", query = "SELECT c FROM Epermit c")
+        @NamedQuery(name = "Epermit.findAll", query = "SELECT e FROM Epermit e")
 })
 public class Epermit {
 

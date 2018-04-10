@@ -1,79 +1,78 @@
-<form id="cityForm" action="~/api/epermit" method="post">
-    <div class="form-group">
-        <label for="epermit_names">Example textarea</label>
-        <textarea class="form-control" id="epermit_names" rows="3"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="accompanyPersonal">Example textarea</label>
-        <textarea class="form-control" id="accompanyPersonal" rows="3"></textarea>
-    </div>
-
-    <div class="form-group row">
-        <label for="entryDate" class="col-2 col-form-label">Date</label>
-        <div class="col-10">
-            <input class="form-control" type="date" value="2011-08-19" id="entryDate">
+<div>
+    <form id="cityForm">
+        <div class="form-group">
+            <label for="epermit_names">Giriş yapacak kisiler</label>
+            <textarea class="form-control" id="epermit_names" rows="3"></textarea>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="exitDate" class="col-2 col-form-label">Date</label>
-        <div class="col-10">
-            <input class="form-control" type="date" value="2011-08-19" id="exitDate">
+
+        <div class="form-group row">
+            <label for="entryDate" class="col-2 col-form-label">Giriş Tarihi</label>
+            <div class="col-10">
+                <input class="form-control" type="date" value="2011-08-19" id="entryDate">
+            </div>
         </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="enterTime" class="col-2 col-form-label">Time</label>
-        <div class="col-10">
-            <input class="form-control" type="time" value="13:45:00" id="enterTime">
+        <div class="form-group row">
+            <label for="exitDate" class="col-2 col-form-label">Çıkıs Tarihi</label>
+            <div class="col-10">
+                <input class="form-control" type="date" value="2011-08-19" id="exitDate">
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="exitTime" class="col-2 col-form-label">Time</label>
-        <div class="col-10">
-            <input class="form-control" type="time" value="13:45:00" id="exitTime">
+
+        <div class="form-group row">
+            <label for="enterTime" class="col-2 col-form-label">Fabrikaya Giris Saati</label>
+            <div class="col-10">
+                <input class="form-control" type="time" value="13:45:00" id="enterTime">
+            </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <label for="exitTime" class="col-2 col-form-label">Fabrikaya Çıkış Saati</label>
+            <div class="col-10">
+                <input class="form-control" type="time" value="13:45:00" id="exitTime">
+            </div>
+        </div>
 
-    <div class="form-group">
-        <label for="entryCompany">Example select</label>
-        <select class="form-control" id="entryCompany">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>11</option>
+        <div class="form-group">
+            <label for="entryCompany">Giriş Yapılacak Yerler</label>
+            <select class="form-control" id="entryCompany">
+                {{#each company}}
+                <option>{{companyName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="rfentryName">Giriş Nedeni</label>
+            <select class="form-control" id="rfentryName">
+                {{#each rfentry}}
+                <option>{{rfentryName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="accompanyPersonal">Eşlik Edecek Personel</label>
+            <select class="form-control" id="accompanyPersonal">
+                {{#each users}}
+                <option>{{userName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="entryPlaceId">Giris Yapılacak Yerler</label>
 
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="reasonfentry">Example select</label>
-        <select class="form-control" id="reasonfentry">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>27</option>
-            <option>5</option>
+            <select class="form-control" id="entryPlaceId">
+                {{#each places}}
+                <option>{{placeName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="wsEducation">İş Guvenligi Durumu</label>
 
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="wsEducation">Example select</label>
-        <select class="form-control" id="wsEducation">
-            <option>1</option>
-            <option>0</option>
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="entryPlaceId">Example select</label>
-        <select class="form-control" id="entryPlaceId">
-            <option>1</option>
-            <option>0</option>
-
-        </select>
-    </div>
-    <button type="submit" class="btn btn-outline-success btn-block">Register</button>
-</form>
-
-
-</br></br></br></br></br></br></br></br>
+            <select class="form-control" id="wsEducation">
+                <option>0</option>
+                <option>1</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-block">Register</button>
+    </form>
+    </br></br></br></br></br></br></br></br>
+</div>

@@ -9,7 +9,9 @@ public class CompanyDto {
 
     public CompanyDto() {
     }
-
+    public CompanyDto(int id) {
+        this.id = id;
+    }
     public CompanyDto(Company company) {
         this.id=company.getCompanyId();
         this.companyName=company.getCompanyName();

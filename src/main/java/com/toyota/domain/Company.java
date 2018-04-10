@@ -32,4 +32,13 @@ public class Company {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
+    public Company(){}
+
+    public Company(String companyName) {
+        this.companyName = companyName;
+    }
+    public Company(int companyId) {
+        this.companyId = companyId;
+    }
 }

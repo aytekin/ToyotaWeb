@@ -35,4 +35,15 @@ public class Place {
     {
         this.placeName = placeName;
     }
+
+    public Place(String placeName) {
+        this.placeName = placeName;
+    }
+
+    public Place() {
+    }
+    public Place(int placeId)
+    {
+        this.placeId = placeId;
+    }
 }

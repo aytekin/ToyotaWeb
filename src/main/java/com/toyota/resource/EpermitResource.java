@@ -15,6 +15,7 @@ import java.util.List;
 @Component
 @Path("/epermit")
 public class EpermitResource {
+
     @Autowired
     EpermitService epermitService;
 
@@ -46,7 +47,6 @@ public class EpermitResource {
 
         return Response.ok(epermit).build();
     }
-
 
     @PUT
     @Path("/{id}")

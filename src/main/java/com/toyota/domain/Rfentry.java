@@ -33,4 +33,15 @@ public class Rfentry {
     public void setRfentryName(String rfentryName) {
         RfentryName = rfentryName;
     }
+
+    public Rfentry(String rfentryName) {
+        RfentryName = rfentryName;
+    }
+
+    public Rfentry() {
+    }
+    public Rfentry(int RfentryId)
+    {
+        this.RfentryId=RfentryId;
+    }
 }

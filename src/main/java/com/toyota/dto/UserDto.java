@@ -12,6 +12,7 @@ public class UserDto {
     public UserDto(){
 
     }
+
     public UserDto(User user)
     {
         this.id=user.getUserId();

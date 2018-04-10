@@ -50,4 +50,14 @@ public class User {
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
     }
+
+    public User(String userName) {
+        this.userName = userName;
+    }
+
+    public User() {
+    }
+    public User(int userId) {
+        this.userId = userId;
+    }
 }

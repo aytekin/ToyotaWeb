@@ -10,6 +10,10 @@ public class PlaceDto {
     public PlaceDto(){
 
     }
+    public PlaceDto(int id)
+    {
+        this.id = id;
+    }
     public PlaceDto(Place place){
         this.id=place.getPlaceId();
         this.placeName=place.getPlaceName();
