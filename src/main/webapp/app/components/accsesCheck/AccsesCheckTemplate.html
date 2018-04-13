@@ -11,15 +11,12 @@
 <form id="cityForm" class="form-inline mx-auto" style="width: 300px">
     <button type="submit" class="btn btn-primary mb-2">Kaydet</button>
 </form>
-
-
-
 <table class="table table-bordered">
 
     <thead>
     <tr>
         <th scope="col">Giris Yapacak Kisiler</th>
-        <th scope="col" id = "muhammed">date</th>
+        <th scope="col" id = "1">date</th>
         <th scope="col">05/07/2018</th>
         <th scope="col">06/07/2018</th>
         <th scope="col">07/07/2018</th>
@@ -32,7 +29,7 @@
     <tbody>
     <tr>
         <th scope="row">{{epermit_names}}</th>
-        <td>{{enterTime}} / {{exitTime}} </td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -58,5 +55,6 @@
 
         return [year, month, day].join('-');
     }
-    document.getElementById("muhammed").innerHTML=formatDate(date);
+    document.getElementById("1").innerHTML=formatDate(date).toString();
+    document.getElementById("2").innerHTML=formatDate();
 </script>

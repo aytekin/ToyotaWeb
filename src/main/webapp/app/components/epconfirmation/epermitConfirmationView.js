@@ -44,7 +44,6 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
                 }
 
             }
-
             this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
         }
     });

@@ -131,7 +131,6 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             var city = this.cities.findWhere({id: id});
             city.set({userName: newCityName});
             city.save();
-
         },
         openEditMode: function (e) {
             var row = $(e.currentTarget).closest("tr");

@@ -1,0 +1,105 @@
+
+<br>
+<br>
+<div class="container">
+    <form id="cityForm">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select class="form-control" id="companyName" >
+                        {{#each companies}}
+                        <option >{{companyName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <span>Başlangıç:</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div >
+                        <input class="form-control" type="date" value="2011-08-19" id="entryDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1" style="">
+                <span>Bitiş : </span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div >
+                        <input class="form-control" type="date" value="2011-08-19" id="exitDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="">
+                    <button type="submit" class="btn btn-primary mb-2">Ara</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        <div class="" style="margin-left: 40%">
+            <button type="button" class="btn btn-primary mb-2 excelImport normalModeElement" onclick="fnExcelReport()" value="Export to Excel">Export to Excel</button>
+        </div>
+
+    <div class="row">
+        <table class="table table-bordered" id="headerTable" >
+            <thead>
+            <tr>
+                <th scope="col">Personel</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Giris Saati</th>
+                <th scope="col">Cikis Saati</th>
+            </tr>
+            </thead>
+            {{#each finds}}
+            <tbody>
+            <tr>
+                <td>{{epermit_names}}</td>
+                <td>{{entryDate}}</td>
+                <td>{{enterTime}}</td>
+                <td>{{exitTime}}</td>
+            </tr>
+            </tbody>
+            {{/each}}
+        </table>
+    </div>
+</div>
+<script>
+    //https://stackoverflow.com/questions/22317951/export-html-table-data-to-excel-using-javascript-jquery-is-not-working-properl
+    function fnExcelReport()
+    {
+        var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j=0;
+        tab = document.getElementById('headerTable'); // id of table
+
+        for(j = 0 ; j < tab.rows.length ; j++)
+        {
+            tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text=tab_text+"</table>";
+        tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+        tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html","replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+        return (sa);
+    }
+</script>
