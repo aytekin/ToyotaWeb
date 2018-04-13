@@ -44,6 +44,7 @@ public class EpermitService {
         epermit.setReasonfentry(epermitDto.getReasonfentry());
         epermit.setEntryPlaceId(epermitDto.getEntryPlaceId());
 
+
         epermitDao.persist(epermit);
         return epermit;
     }

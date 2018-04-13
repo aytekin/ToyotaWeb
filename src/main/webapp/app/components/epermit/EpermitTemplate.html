@@ -1,78 +1,238 @@
-<div>
-    <form id="cityForm">
-        <div class="form-group">
-            <label for="epermit_names">Giriş yapacak kisiler</label>
-            <textarea class="form-control" id="epermit_names" rows="3"></textarea>
-        </div>
+<div class="container" align="center" >
+</br>
+    <div align="center">
 
-        <div class="form-group row">
-            <label for="entryDate" class="col-2 col-form-label">Giriş Tarihi</label>
-            <div class="col-10">
-                <input class="form-control" type="date" value="2011-08-19" id="entryDate">
+        <form id="cityForm" align="center">
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="epermit_names">Giriş yapacak kisiler</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+
+                        <textarea class="form-control" id="epermit_names" rows="2"></textarea>
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="exitDate" class="col-2 col-form-label">Çıkıs Tarihi</label>
-            <div class="col-10">
-                <input class="form-control" type="date" value="2011-08-19" id="exitDate">
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="exitDate" >Giriş Tarihi</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " id="dp3" style="width:300px;">
+
+                        <input class="form-control datepicker" type="date" value="" id="entryDate">
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
             </div>
-        </div>
 
-        <div class="form-group row">
-            <label for="enterTime" class="col-2 col-form-label">Fabrikaya Giris Saati</label>
-            <div class="col-10">
-                <input class="form-control" type="time" value="13:45:00" id="enterTime">
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="exitDate" >Çıkıs Tarihi</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+
+                        <input class="form-control datepicker" type="date" value="" id="exitDate">
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="exitTime" class="col-2 col-form-label">Fabrikaya Çıkış Saati</label>
-            <div class="col-10">
-                <input class="form-control" type="time" value="13:45:00" id="exitTime">
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="enterTime">Fabrikaya Giris-çıkış Saati</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+
+                        <div class="row" align="left">
+                            <div class="form-group col-md-5" align="left" >
+
+                                <input align="left" class="form-control" type="time" value="" id="enterTime">
+
+                            </div>
+
+                            <div  align="right" class="form-group col-md-5">
+
+                                <input class="form-control" type="time" value="" id="exitTime">
+
+                            </div>
+                        </div>
+
+                </div>
+                <div class="col-md-3"></div>
+
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="entryCompany">Giriş Yapılacak Yerler</label>
-            <select class="form-control" id="entryCompany">
-                {{#each company}}
-                <option>{{companyName}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="rfentryName">Giriş Nedeni</label>
-            <select class="form-control" id="rfentryName">
-                {{#each rfentry}}
-                <option>{{rfentryName}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="accompanyPersonal">Eşlik Edecek Personel</label>
-            <select class="form-control" id="accompanyPersonal">
-                {{#each users}}
-                <option>{{userName}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="entryPlaceId">Giris Yapılacak Yerler</label>
 
-            <select class="form-control" id="entryPlaceId">
-                {{#each places}}
-                <option>{{placeName}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="wsEducation">İş Guvenligi Durumu</label>
 
-            <select class="form-control" id="wsEducation">
-                <option>0</option>
-                <option>1</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-outline-success btn-block">Register</button>
-    </form>
-    </br></br></br></br></br></br></br></br>
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="exitTime" >Firma </label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+
+                        <select class="form-control" id="entryCompany">
+                            {{#each company}}
+                            <option>{{companyName}}</option>
+                            {{/each}}
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="rfentryName">Giriş Nedeni</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+
+                        <select  multiple="multiple" class="form-control" id="rfentryName">
+                            {{#each rfentry}}
+                            <option>{{rfentryName}}</option>
+                            {{/each}}
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="entryPlaceId">Giris Yapılacak Yerler</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+
+                        <select  multiple="multiple" class="form-control" id="entryPlaceId">
+                            {{#each places}}
+                            <option>{{placeName}}</option>
+                            {{/each}}
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+                    <label for="accompanyPersonal">Eşlik Edecek Personel</label>
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+                        <select class="form-control" id="accompanyPersonal">
+                            {{#each users}}
+                            <option>{{userName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+                    <label for="entryPlaceId">İş Güvenliği Eğitimi Gereklimi</label>
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="row" align="left">
+                        <div class="form-group col-md-5" align="left" >
+
+                            <label class="radio-inline">
+                                <input type="radio" name="wsEducation">Evet
+                            </label>
+
+                        </div>
+                        <div  align="left" class="form-group col-md-5" style="width:300px;">
+
+                            <label class="radio-inline">
+                                <input type="radio" name="wsEducation">Hayır
+                            </label>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-5" align="right">
+
+
+
+                </div>
+                <div class="col-md-4" align="left">
+                    <div class="form-group row " style="width:300px;">
+                        <button style="width:300px;" type="submit" class="btn btn-outline-primary btn-block">Oluştur</button>
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+
+
+        </form>
+        </br></br></br></br></br></br></br></br>
+    </div>
+
 </div>
+
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+        var date =new Date();
+        document.getElementById('entryDate').min = formatDate2(date,0);
+
+        $('input[id="entryDate"]').change(function(){
+            totaldue =this.value;
+            document.getElementById('exitDate').min = totaldue;
+            document.getElementById('exitDate').max = ChangeDate(totaldue);
+
+        });
+    });
+</script>
