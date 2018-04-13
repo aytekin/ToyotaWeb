@@ -25,10 +25,26 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
             var city = this.cities.findWhere({epermitId: id});
             city.set({epermitStatus: value});
             city.save();
-
+            this.render();
 
         },
         render: function () {
+            for(var i = 0;i<this.cities.length;i++){
+
+                var exdate =   new Date(this.cities.models[i].get("exitDate")).toISOString();
+                exdate = exdate.substr(0,10);
+                var endate = new Date(this.cities.models[i].get("entryDate")).toISOString();
+                endate = endate.substr(0,10);
+
+                if(this.cities.models[i].get("epermitStatus") == 1){
+                    this.cities.remove(this.cities.models[i]);
+                }else{
+                       this.cities.models[i].set({exitDate:exdate});
+                       this.cities.models[i].set({entryDate:endate});
+                }
+
+            }
+
             this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
         }
     });

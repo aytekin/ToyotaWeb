@@ -58,7 +58,11 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             this.cities.fetch({reset: true})
         },
         events: {
-            'submit #cityForm': 'saveCity'
+            'submit #cityForm': 'saveCity',
+            'click .deleteCity': 'deleteCity',
+            'click .editCity': 'openEditMode',
+            'click .cancel': 'cancelUpdate',
+            'click .updateCity': 'updateCity'
         },
         saveCity: function (e) {
             e.preventDefault();
@@ -73,22 +77,10 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             var PersonalName = $("#accompanyPersonal").val();
             for(var i = 0 ; i<(this.places.length);i++)
             {
-                if(PlaceName.length>1){
-                    for(var j = 0;j < PlaceName.length;j++)
-                    {
-                        //buraya tekrar bakmak gerek!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        if(this.places.models[i].get("placeName") == PlaceName[j]){
-                            placeId = PlaceName[j];
-                        }
-                    }
-
+                if(this.places.models[i].get("placeName")==PlaceName)
+                {
+                    placeId=this.places.models[i].get("id");
                 }
-                else
-                    if(this.places.models[i].get("placeName")==PlaceName)
-                        placeId=this.places.models[i].get("id");
-
-
-
             }
             for(var i = 0 ; i<(this.company.length);i++)
             {
@@ -112,6 +104,7 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
                     personalId=this.users.models[i].get("id");
                 }
             }
+            console.log($("#entryDate").val() + " " +$("#enterTime").val());
             var city = new CityModel({
                 epermit_names:$("#epermit_names").val(),
                 entryDate:$("#entryDate").val(),
@@ -124,21 +117,29 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
                 entryPlaceId :placeId,
                 wsEducation:$("#wsEducation").val()
             });
-            var names = "";
-            names=$("#epermit_names").val().toString();
-            var temp = "";
-            for(var i = 0; i < names.length;i++){
-
-                if(names[i] != "\n")
-                    temp += names[i];
-                else
-                    temp += " - ";
-            }
-
-            city.set({epermit_names:temp});
-
             this.cities.create(city, {wait: true});
             alert("Kayıt Basarılı");
+        },
+        deleteCity: function (e) {
+            var id = $(e.currentTarget).data("id");
+            this.cities.findWhere({id: id}).destroy();
+        },
+        updateCity: function (e) {
+            var row = $(e.currentTarget).closest("tr");
+            var newCityName = row.find("input").val();
+            var id = $(e.currentTarget).data("id");
+            var city = this.cities.findWhere({id: id});
+            city.set({userName: newCityName});
+            city.save();
+
+        },
+        openEditMode: function (e) {
+            var row = $(e.currentTarget).closest("tr");
+            row.find(".editModeElement").show();
+            row.find(".normalModeElement").hide();
+        },
+        cancelUpdate: function () {
+            this.render();
         },
         render: function () {
             this.$el.html(cityTemplate({places  : this.places.toJSON(),

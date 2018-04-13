@@ -33,6 +33,9 @@ define(['text!components/company/CompanyTemplate.html'], function (template) {
             }
             else if ($('#companyName').val().length < 1 ){
                 alert("this place is cannot be empty!")
+
+
+
             }else{
                 e.preventDefault();
                 var city = new CityModel({companyName: $("#companyName").val()});
