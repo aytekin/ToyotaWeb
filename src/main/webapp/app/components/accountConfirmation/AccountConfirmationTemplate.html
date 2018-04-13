@@ -1,0 +1,75 @@
+
+<br>
+<br>
+<div class="container">
+    <form id="cityForm">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select class="form-control" id="entryPlaceId" >
+                        {{#each companies}}
+                        <option>{{companyName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <span>Başlangıç:</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div >
+                        <input class="form-control" type="date" value="2011-08-19" id="entryDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1" style="">
+                <span>Bitiş : </span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div >
+                        <input class="form-control" type="date" value="2011-08-19" id="exitDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="">
+                    <button type="submit" class="btn btn-primary mb-2">Ara</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="" style="margin-left: 40%">
+            <button type="submit" class="btn btn-primary mb-2 btn-sm ">Excele İmport Et</button>
+        </div>
+    </form>
+    <div class="row">
+        <table class="table table-bordered" >
+            <thead>
+            <tr>
+                <th scope="col">İsim</th>
+                <th scope="col">Kullanıcı Adı</th>
+                <th scope="col">Hesap Onayı</th>
+                <th scope="col">Yetki</th>
+                <th scope="col">Kaydet</th>
+            </tr>
+            </thead>
+            {{#each finds}}
+            <tbody>
+            <tr>
+                <td>{{epermit_names}}</td>
+                <td>{{entryDate}}</td>
+                <td>{{enterTime}}</td>
+                <td>{{exitTime}}</td>
+            </tr>
+            </tbody>
+            {{/each}}
+        </table>
+    </div>
+</div>
+
+
+
+

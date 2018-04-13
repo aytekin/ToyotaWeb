@@ -6,6 +6,7 @@ define(function (require) {
             require('utilities'); //Utility fonksiyonlarını her yerde kullanmak için
         },
         routes: {
+            'home':'home',
             'city': 'city'  ,
             'rfentry':'rfentry',
             'place':'place',
@@ -15,15 +16,29 @@ define(function (require) {
             'accsesCheck':'accsesCheck',
             'user':'user',
             'epconf':'epconf',
-            'wseconf':'wseconf'
+            'wseconf':'wseconf',
+            'report':'report',
+            'accountConfirmation':'accountConfirmation'
+        },
+        home: function () {
+            var HomeView = require('components/home/HomeView');
+            showView(new HomeView());
         },
         city: function () {
             var CityView = require('components/city/CityView');
             showView(new CityView());
         },
+        accountConfirmation: function () {
+            var AccountView = require('components/accountConfirmation/AccountConfirmationView');
+            showView(new AccountView());
+        },
+        report: function () {
+            var ReportView = require('components/report/ReportView');
+            showView(new ReportView());
+        },
         accsesCheck: function () {
-            var CityView = require('components/accsesCheck/AccsesCheckView');
-            showView(new CityView());
+            var AccsesCheckView = require('components/accsesCheck/AccsesCheckView');
+            showView(new AccsesCheckView());
         },
         place: function () {
             var PlaceView = require('components/place/PlaceView');

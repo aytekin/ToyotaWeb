@@ -38,7 +38,6 @@ define(['text!components/city/CityTemplate.html'], function (template) {
             var city = this.cities.findWhere({id: id});
             city.set({cityName: newCityName});
             city.save();
-
         },
         openEditMode: function (e) {
             var row = $(e.currentTarget).closest("tr");
