@@ -23,6 +23,7 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
             var value= 1;
             var id = $(e.currentTarget).data("id");
             var city = this.cities.findWhere({epermitId: id});
+
             city.set({epermitStatus: value});
             city.save();
 

@@ -44,9 +44,8 @@ public class Epermit {
     @JoinColumn(name = "ACCOMPANY_PERSONAL_ID")
     private User accompanyPersonal;
 
-    @ManyToOne
-    @JoinColumn(name = "ENTRY_PLACE_ID")
-    private Place entryPlaceId;
+    @Column(name = "ENTRY_PLACES")
+    private String entryPlaces;
 
     @Column(name = "WS_EDUCATION")
     private int wsEducation;
@@ -142,11 +141,11 @@ public class Epermit {
         this.wsEducation = wsEducation;
     }
 
-    public Place getEntryPlaceId() {
-        return entryPlaceId;
+    public String getEntryPlaces() {
+        return entryPlaces;
     }
 
-    public void setEntryPlaceId(Place entryPlaceId) {
-        this.entryPlaceId = entryPlaceId;
+    public void setEntryPlaces(String entryPlaces) {
+        this.entryPlaces = entryPlaces;
     }
 }

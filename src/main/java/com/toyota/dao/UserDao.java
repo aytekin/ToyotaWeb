@@ -18,4 +18,5 @@ public class UserDao {
     public void remove(User user){entityManager.remove(user);}
     public User find(int id){return entityManager.find(User.class,id);}
     public List<User> findAll(){return entityManager.createNamedQuery("User.findAll", User.class).getResultList();}
+
 }
