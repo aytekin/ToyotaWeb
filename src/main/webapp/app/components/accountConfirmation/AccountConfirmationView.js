@@ -36,9 +36,6 @@ define(['text!components/accountConfirmation/AccountConfirmationTemplate.html'],
         },
         find:function (e) {
             e.preventDefault();
-
-
-
             var kontrol = 0 ;
             var companyName = $("#entryPlaceId").val();
             var entryDate = $("#entryDate").val();

@@ -1,4 +1,3 @@
-
 define(['text!components/wseducationconfirm/wseducationConfirmTemplate.html'], function (template) {
     var cityTemplate = Handlebars.compile(template);
 
@@ -21,10 +20,10 @@ define(['text!components/wseducationconfirm/wseducationConfirmTemplate.html'], f
             'click .confirmEntryPermit':'confirmEntryPermit'
         },
         confirmEntryPermit: function (e) {
-            var value= 1;
+            var value = 1;
             var id = $(e.currentTarget).data("id");
             var city = this.cities.findWhere({epermitId: id});
-            city.set({wsEducation: value});
+            city.set({wsEducation:value});
             city.save();
         },
         render: function () {
@@ -41,9 +40,7 @@ define(['text!components/wseducationconfirm/wseducationConfirmTemplate.html'], f
                     this.cities.models[i].set({exitDate:exdate});
                     this.cities.models[i].set({entryDate:endate});
                 }
-
             }
-
             this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
         }
     });

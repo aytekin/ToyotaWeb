@@ -29,7 +29,6 @@ public class EpermitResource {
         }catch (Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
-
         return Response.ok(epermitDtoList).build();
     }
 
