@@ -1,75 +1,63 @@
-
+<link rel="stylesheet" href="app/assets/css/bootstrap.min.css">
 <br>
 <br>
 <div class="container">
-    <form id="cityForm">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <select class="form-control" id="entryPlaceId" >
-                        {{#each companies}}
-                        <option>{{companyName}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <span>Başlangıç:</span>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div >
-                        <input class="form-control" type="date" value="2011-08-19" id="entryDate">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1" style="">
-                <span>Bitiş : </span>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div >
-                        <input class="form-control" type="date" value="2011-08-19" id="exitDate">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="">
-                    <button type="submit" class="btn btn-primary mb-2">Ara</button>
-                </div>
-            </div>
-        </div>
-    </form>
-    <form>
-        <div class="" style="margin-left: 40%">
-            <button type="submit" class="btn btn-primary mb-2 btn-sm ">Excele İmport Et</button>
-        </div>
-    </form>
+    <h2 align =center style="color:#f8ffd0;">Hesap Onayı Bekleyen Kullanıcılar</h2></br>
+    <form >
     <div class="row">
-        <table class="table table-bordered" >
-            <thead>
+        <table class="table table-hover table-light mt-2 text-center">
+            <thead class="thead-light">
             <tr>
-                <th scope="col">İsim</th>
-                <th scope="col">Kullanıcı Adı</th>
-                <th scope="col">Hesap Onayı</th>
-                <th scope="col">Yetki</th>
-                <th scope="col">Kaydet</th>
+                <th  >İsim</th>
+                <th  >Kullanıcı Adı</th>
+                <th  >Hesap Onayı</th>
+                <th  >Yetki</th>
+                <th  >Kaydet</th>
             </tr>
             </thead>
-            {{#each finds}}
+
             <tbody>
+            {{#each users}}
             <tr>
-                <td>{{epermit_names}}</td>
-                <td>{{entryDate}}</td>
-                <td>{{enterTime}}</td>
-                <td>{{exitTime}}</td>
+                <!-- Kullanmıcı Bigileri-->
+                <td>{{userName}}</td>
+                <td>{{userNickname}}</td>
+                <td>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="confirm" required>
+                        <label class="custom-control-label" for="confirm">Onayla</label>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-6 offset-md-3" align="center">
+                        <div class="form-group" align="center" >
+                            <select id="authority" class="custom-select" required>
+                                <option value="">Yetki Seçin</option>
+                                <option value="1">Site Yetkilisi</option>
+                                <option value="2">Güvenlik</option>
+                                <option value="3">İnsan Kaynakları</option>
+                                <option value="4">Yönetici</option>
+                                <option value="5">Personel</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td><button class="btn btn-success btn-sm confirm normalModeElement" data-id="{{id}}">Kayıt <i class="fas fa-check"></i></button></td>
             </tr>
-            </tbody>
+            {{else}}
+
+                <!---
+                    BOŞ İSE YAPILACAKLAR
+                -->
+
             {{/each}}
+
+            </tbody>
+
         </table>
     </div>
+    </form>
 </div>
-
-
 
 

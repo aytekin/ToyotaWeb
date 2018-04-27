@@ -21,9 +21,9 @@ public class EpermitDto {
 
     private Company entryCompany;
 
-    private Rfentry reasonfentry;
+    private String reasonfentry;
 
-    private User accompanyPersonal;
+    private String accompanyPersonal;
 
     private int wsEducation;
 
@@ -32,6 +32,7 @@ public class EpermitDto {
     private String entryPlaces;
 
     public EpermitDto() {
+
     }
 
     public EpermitDto(Epermit epermit) {
@@ -47,14 +48,6 @@ public class EpermitDto {
         this.wsEducation = epermit.getWsEducation();
         this.entryPlaces = epermit.getEntryPlaces();
         this.epermitStatus = epermit.getEpermitStatus();
-    }
-
-    public int getEpermitStatus() {
-        return epermitStatus;
-    }
-
-    public void setEpermitStatus(int epermitStatus) {
-        this.epermitStatus = epermitStatus;
     }
 
     public Integer getEpermitId() {
@@ -113,20 +106,20 @@ public class EpermitDto {
         this.entryCompany = entryCompany;
     }
 
-    public Rfentry getReasonfentry() {
+    public String getReasonfentry() {
         return reasonfentry;
     }
 
-    public void setReasonfentry(Rfentry reasonfentry) {
+    public void setReasonfentry(String reasonfentry) {
         this.reasonfentry = reasonfentry;
     }
 
-    public User getAccompanyPersonal() {
+    public String getAccompanyPersonal() {
         return accompanyPersonal;
     }
 
-    public void setAccompanyPersonal(User acompanyPersonal) {
-        this.accompanyPersonal = acompanyPersonal;
+    public void setAccompanyPersonal(String accompanyPersonal) {
+        this.accompanyPersonal = accompanyPersonal;
     }
 
     public int getWsEducation() {
@@ -135,6 +128,14 @@ public class EpermitDto {
 
     public void setWsEducation(int wsEducation) {
         this.wsEducation = wsEducation;
+    }
+
+    public int getEpermitStatus() {
+        return epermitStatus;
+    }
+
+    public void setEpermitStatus(int epermitStatus) {
+        this.epermitStatus = epermitStatus;
     }
 
     public String getEntryPlaces() {

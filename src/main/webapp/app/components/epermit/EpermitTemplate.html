@@ -1,96 +1,96 @@
-<div class="container" align="center" >
-</br>
+
+<div class="container" style="background-color:rgba(255,255,255,0.50); min-width: max-content;"  >
+
+    </br>
     <div align="center">
 
         <form id="cityForm" align="center">
+            <div class="row " align="center">
+                <div class="col-md-2 offset-md-3">
 
-            <div class="row">
-                <div class="col-md-5" align="right">
-
-                    <label for="epermit_names">Giriş yapacak kisiler</label>
+                    <label for="epermit_names"><strong>Giriş yapacak kişiler</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
 
                         <textarea class="form-control" id="epermit_names" rows="2"></textarea>
 
                     </div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="exitDate" >Giriş Tarihi</label>
+                    <label for="exitDate" ><strong>Giriş Tarihi</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2">
                     <div class="form-group row " id="dp3" style="width:300px;">
 
                         <input class="form-control datepicker" type="date" value="" id="entryDate">
 
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+
 
             </div>
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="exitDate" >Çıkıs Tarihi</label>
+                    <label for="exitDate" ><strong>Çıkış Tarihi</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2" >
                     <div class="form-group row " style="width:300px;">
 
                         <input class="form-control datepicker" type="date" value="" id="exitDate">
 
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+
 
             </div>
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="enterTime">Fabrikaya Giris-çıkış Saati</label>
+                    <label for="enterTime"><strong>Giriş - Çıkış Saati</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-4">
 
-                        <div class="row" align="left">
-                            <div class="form-group col-md-5" align="left" >
+                    <div class="row" align="left">
+                        <div class="form-group col-md-5" align="left" >
 
-                                <input align="left" class="form-control" type="time" value="" id="enterTime">
+                            <input align="left" class="form-control" type="time" value="" id="enterTime">
 
-                            </div>
-
-                            <div  align="right" class="form-group col-md-5">
-
-                                <input class="form-control" type="time" value="" id="exitTime">
-
-                            </div>
                         </div>
 
+                        <div  align="right" class="form-group col-md-5">
+
+                            <input class="form-control" type="time" value="" id="exitTime">
+
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-md-3"></div>
+
 
             </div>
 
 
 
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="exitTime" >Firma </label>
+                    <label for="exitTime" ><strong>Firma </strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
 
                         <select class="form-control" id="entryCompany">
@@ -101,18 +101,16 @@
 
                     </div>
                 </div>
-                <div class="col-md-3"></div>
-
             </div>
 
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="rfentryName">Giriş Nedeni</label>
+                    <label for="rfentryName"><strong>Giriş Nedeni</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
 
                         <select  multiple="multiple" class="form-control" id="rfentryName">
@@ -123,21 +121,20 @@
 
                     </div>
                 </div>
-                <div class="col-md-3"></div>
 
             </div>
 
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="entryPlaceId">Giris Yapılacak Yerler</label>
+                    <label for="entryPlaces"><strong>Giris Yapılacak Yerler</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2" >
                     <div class="form-group row " style="width:300px;">
 
-                        <select  multiple="multiple" class="form-control" id="entryPlaceId">
+                        <select  multiple="multiple" class="form-control" id="entryPlaces">
                             {{#each places}}
                             <option>{{placeName}}</option>
                             {{/each}}
@@ -145,15 +142,14 @@
 
                     </div>
                 </div>
-                <div class="col-md-3"></div>
 
             </div>
 
-            <div class="row">
-                <div class="col-md-5" align="right">
-                    <label for="accompanyPersonal">Eşlik Edecek Personel</label>
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
+                    <label for="accompanyPersonal"><strong>Eşlik Edecek Personel</strong></label>
                 </div>
-                <div class="col-md-4" align="left">
+                <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
                         <select class="form-control" id="accompanyPersonal">
                             {{#each users}}
@@ -162,66 +158,49 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+
             </div>
 
 
-            <div class="row">
-                <div class="col-md-5" align="right">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-3">
 
-                    <label for="entryPlaceId">İş Güvenliği Eğitimi Gereklimi</label>
+                    <label for="entryPlaces"><strong>İş Güvenliği Eğitimi Gereklimi</strong></label>
 
                 </div>
-                <div class="col-md-4" align="left">
-                    <div class="row" align="left">
-                        <div class="form-group col-md-5" align="left" >
+                <div class="col-md-3" >
+                    <div class="row" align="center">
 
                             <label class="radio-inline">
-                                <input type="radio" name="wsEducation">Evet
-                            </label>
-
-                        </div>
-                        <div  align="left" class="form-group col-md-5" style="width:300px;">
-
-                            <label class="radio-inline">
-                                <input type="radio" name="wsEducation">Hayır
+                                <input type="radio" name="wsConfirm" value="Evet"><strong>Evet</strong>
                             </label>
 
 
-                        </div>
+                            <label class="radio-inline">
+                                <input type="radio" name="wsConfirm" value="Hayir"><strong>Hayır</strong>
+                            </label>
+
+
+
                     </div>
-
-
-
-
-
                 </div>
-                <div class="col-md-3"></div>
-
             </div>
-            <div class="row">
-                <div class="col-md-5" align="right">
-
-
-
-                </div>
-                <div class="col-md-4" align="left">
+            <div class="row" align="center">
+                <div class="col-md-2 offset-md-5">
                     <div class="form-group row " style="width:300px;">
-                        <button style="width:300px;" type="submit" class="btn btn-outline-primary btn-block">Oluştur</button>
-
+                        <button style="width:300px;" type="submit" class="btn btn-primary btn-block">Oluştur</button>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
-
             </div>
 
 
 
         </form>
-        </br></br></br></br></br></br></br></br>
+        </br></br></br></br>
     </div>
 
 </div>
+
 
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function(){

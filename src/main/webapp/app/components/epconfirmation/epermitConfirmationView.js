@@ -2,7 +2,9 @@
 define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], function (template) {
     var cityTemplate = Handlebars.compile(template);
 
-    var CityModel = Backbone.Model.extend({});
+    var CityModel = Backbone.Model.extend({
+        idAttribute: 'epermitId'
+    });
 
     var CityCollection = Backbone.Collection.extend({
         url: "/api/epermit",
@@ -20,11 +22,11 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
             'click .confirmEntryPermit':'confirmEntryPermit'
         },
         confirmEntryPermit: function (e) {
+
             var value= 1;
             var id = $(e.currentTarget).data("id");
             var city = this.cities.findWhere({epermitId: id});
-
-            city.set({epermitStatus: value});
+            city.set("epermitStatus", value);
             city.save();
 
 

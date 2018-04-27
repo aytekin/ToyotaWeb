@@ -6,6 +6,7 @@ define(function (require) {
             require('utilities'); //Utility fonksiyonlarını her yerde kullanmak için
         },
         routes: {
+            '':'home',
             'home':'home',
             'city': 'city'  ,
             'rfentry':'rfentry',

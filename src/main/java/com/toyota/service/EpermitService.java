@@ -63,7 +63,7 @@ public class EpermitService {
         epermit.setWsEducation(epermitDto.getWsEducation());
         epermit.setReasonfentry(epermitDto.getReasonfentry());
         epermit.setEntryPlaces(epermitDto.getEntryPlaces());
-
+        epermit.setEpermitStatus(epermitDto.getEpermitStatus());
         epermitDao.merge(epermit);
         return epermit;
     }

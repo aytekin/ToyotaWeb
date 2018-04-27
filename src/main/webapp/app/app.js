@@ -2,7 +2,7 @@
 requirejs.config({
     baseUrl: "app",
     paths: {
-        'jquery': 'assets/lib/jquery-3.2.0',
+        'jquery': 'assets/lib/jquery1',
         'backbone': 'assets/lib/backbone',
         'handlebars': 'assets/lib/handlebars-v4.0.5',
         'underscore': 'assets/lib/underscore',

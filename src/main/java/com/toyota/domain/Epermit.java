@@ -36,13 +36,11 @@ public class Epermit {
     @JoinColumn(name = "ENTRY_COMPANY_ID")
     private Company entryCompany;
 
-    @ManyToOne
-    @JoinColumn(name = "REASON_FOR_ENTRY_ID")
-    private Rfentry reasonfentry;
+    @Column(name = "REASON_FOR_ENTRY_ID")
+    private String reasonfentry;
 
-    @OneToOne
-    @JoinColumn(name = "ACCOMPANY_PERSONAL_ID")
-    private User accompanyPersonal;
+    @Column(name = "ACCOMPANY_PERSONAL_ID")
+    private String accompanyPersonal;
 
     @Column(name = "ENTRY_PLACES")
     private String entryPlaces;
@@ -117,19 +115,19 @@ public class Epermit {
         this.entryCompany = entryCompany;
     }
 
-    public Rfentry getReasonfentry() {
+    public String getReasonfentry() {
         return reasonfentry;
     }
 
-    public void setReasonfentry(Rfentry reasonfentry) {
+    public void setReasonfentry(String reasonfentry) {
         this.reasonfentry = reasonfentry;
     }
 
-    public User getAccompanyPersonal() {
+    public String getAccompanyPersonal() {
         return accompanyPersonal;
     }
 
-    public void setAccompanyPersonal(User accompanyPersonal) {
+    public void setAccompanyPersonal(String accompanyPersonal) {
         this.accompanyPersonal = accompanyPersonal;
     }
 

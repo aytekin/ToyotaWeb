@@ -5,7 +5,7 @@
 
             </div>
             <div  class="col-md-5" align="center" >
-                <label for="entryPlaceId"><h5>Firma Seçiniz</h5></label>
+                <label for="entryPlaceId"><h5 style="color:#f8ffd0;">Firma Seçiniz</h5></label>
                 <div style="width: 250px;" class="form-group mx-sm-3 mb-2">
                     <select  class="form-control" id="entryPlaceId">
                         {{#each companies}}
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-4"  style="margin-top: 40px;" >
                 <form id="cityForm" class="form-inline mb-2">
-                    <button align="center" type="submit" class="btn btn-outline-primary">Kaydet</button>
+                    <button align="center" type="submit" class="btn btn-primary">Kaydet</button>
                 </form>
             </div>
         </div>
@@ -26,10 +26,11 @@
 
 </div>
 
-    <table class="table table-bordered mt-2 col-md-12 text-center">
-        <thead class="thead-light">
+<table class="table table-hover table-light mt-2 text-center">
+
+<thead class="thead-light">
         <tr>
-            <th scope="col">Giris Yapacak Kisiler</th>
+            <th scope="col">Giriş Yapacak Kişiler</th>
             <th scope="col" id ="day0">date</th>
             <th scope="col=" id="day1">date</th>
             <th scope="col" id="day2">date</th>
@@ -68,7 +69,7 @@
         </tr>
         {{else}}
         <tr>
-            <td colspan="12">Hiç şehir eklenmemiş!</td>
+            <td colspan="12">Kayıt Bulunmamaktadır.</td>
         </tr>
         {{/each}}
         </tbody>

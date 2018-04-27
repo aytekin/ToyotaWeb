@@ -24,6 +24,14 @@ define(['text!components/city/CityTemplate.html'], function (template) {
         },
         saveCity: function (e) {
             e.preventDefault();
+            var cityName = this.$el.find("input").val();
+            if (!cityName) {//İnput boş bırakılırsa
+                this.$el.find("input").tooltip("show");//Hata mesajını göster
+                var that = this;
+                setTimeout(function () {//1 saniye sonra hata mesajını yok et.
+                    that.$el.find("input").tooltip("destroy");
+                }, 1000);
+            }
             var city = new CityModel({cityName: $("#cityName").val()});
             this.cities.create(city, {wait: true});
         },
@@ -40,6 +48,8 @@ define(['text!components/city/CityTemplate.html'], function (template) {
             city.save();
         },
         openEditMode: function (e) {
+
+            this.$el.addClass("info");
             var row = $(e.currentTarget).closest("tr");
             row.find(".editModeElement").show();
             row.find(".normalModeElement").hide();

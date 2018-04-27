@@ -1,14 +1,14 @@
 <div class="col-md-12 mt-5 text-center">
-    <h2>pending entry permit confirmation</h2></br>
-<table class="table table-bordered mt-2 text-center">
+    <h2 style="color:#f8ffd0;">Giriş İzni Onayı Bekleyenler</h2></br>
+    <table class="table table-hover table-light mt-2 text-center">
     <thead class="thead-light">
     <tr>
-        <th>Entry Persons</th>
-        <th>Entry Date</th>
-        <th>Exit Date</th>
-        <th>Company</th>
-        <th>Accompany Personal</th>
-        <th>Confirm</th>
+        <th>Giriş Yapacak Kişiler</th>
+        <th>Giriş Tarihi</th>
+        <th>Çıkış Tarihi</th>
+        <th>Firma</th>
+        <th>Eşlik Edecek Personel</th>
+        <th>Onayla</th>
     </tr>
     </thead>
     <tbody>
@@ -32,13 +32,13 @@
             <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
         </td>
         <td>
-            <span class="normalModeElement">{{accompanyPersonal.userName}}</span>
+            <span class="normalModeElement">{{accompanyPersonal}}</span>
             <input type="text" class="form-control form-control-sm text-center cityEditInput editModeElement" style="display: none" value="{{companyName}}">
         </td>
 
         <td>
             <button class="btn btn-success btn-sm confirmEntryPermit normalModeElement" data-id="{{epermitId}}">
-                sad<i class="far fa-check-circle"></i>
+                Onayla <i class="far fa-check-circle"></i>
 
             </button>
 
@@ -46,7 +46,7 @@
     </tr>
     {{else}}
     <tr>
-        <td colspan="6">Hiç şehir eklenmemiş!</td>
+        <td colspan="6">Giriş İzni Onayı Bekleyen Firma Bulunmamaktadır.</td>
     </tr>
     {{/each}}
     </tbody>
