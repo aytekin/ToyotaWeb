@@ -1,11 +1,10 @@
 <div class="col-md-12 mt-5 text-center">
+    <h2 style="color:#f8ffd0;" class="animated tada">Giriş İzni Kontrol</h2></br>
     <div class="container">
         <div class="row">
-            <div class="col-md-3" align="right">
 
-            </div>
-            <div  class="col-md-5" align="center" >
-                <label for="entryPlaceId"><h5 style="color:#f8ffd0;">Firma Seçiniz</h5></label>
+            <div class="col-md-2 offset-2"><label style="color:#f8ffd0; margin-top:3px;" for="entryPlaceId">Firma Seçiniz</label></div>
+            <div  class="col-md-2" align="center" >
                 <div style="width: 250px;" class="form-group mx-sm-3 mb-2">
                     <select  class="form-control" id="entryPlaceId">
                         {{#each companies}}
@@ -13,10 +12,8 @@
                         {{/each}}
                     </select>
                 </div>
-
-
             </div>
-            <div class="col-md-4"  style="margin-top: 40px;" >
+            <div class="col-md-2 offset-2">
                 <form id="cityForm" class="form-inline mb-2">
                     <button align="center" type="submit" class="btn btn-primary">Kaydet</button>
                 </form>

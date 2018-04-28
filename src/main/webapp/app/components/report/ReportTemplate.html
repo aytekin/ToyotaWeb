@@ -2,9 +2,10 @@
 <br>
 <br>
 <div class="container">
+    <h2 align="center" style="color:#f8ffd0;" class="animated tada">Giriş Bilgisi Raporlama</h2></br>
     <form id="cityForm">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 ">
                 <div class="form-group">
                     <select class="form-control" id="companyName" >
                         {{#each companies}}
@@ -13,8 +14,8 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-1">
-                <span>Başlangıç:</span>
+            <div class="col-md-2">
+                <span style="color:#f8ffd0; font-size:20px;">Başlangıç Tarihi</span>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
@@ -23,8 +24,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1" style="">
-                <span>Bitiş : </span>
+            <div class="col-md-2" style="">
+                <span style="color:#f8ffd0; font-size:20px;">&nbsp;&nbsp;Bitiş Tarihi</span>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
@@ -33,20 +34,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1" align="center">
                 <div class="">
-                    <button type="submit" class="btn btn-primary mb-2">Ara</button>
+                    <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i>&nbsp;Ara</button>
                 </div>
             </div>
         </div>
     </form>
-        <div class="" style="margin-left: 40%">
-            <button type="button" class="btn btn-primary mb-2 excelImport normalModeElement" onclick="fnExcelReport()" value="Export to Excel">Export to Excel</button>
+
+        <div align="center">
+            <div class="" >
+                <button type="button" class="btn btn-success excelImport normalModeElement" onclick="fnExcelReport()" value="Export to Excel"><i class="far fa-file-excel"></i> &nbsp; Excel'e Export Et</button>
+            </div>
         </div>
 
+
     <div class="row">
-        <table class="table table-hover table-light mt-2 text-center">
-            <thead>
+        <table class="table table-hover .table-bordered table-light mt-2 text-center">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Personel</th>
                 <th scope="col">Tarih</th>
