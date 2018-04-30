@@ -3,18 +3,19 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-2 offset-2"><label style="color:#f8ffd0; margin-top:3px;" for="entryPlaceId">Firma Seçiniz</label></div>
+            <div align="center"  class="col-md-3 offset-1 text-center"><label align="center" style="color:#f8ffd0; margin-top:3px;" for="entryPlaceId">Firma Seçiniz</label></div>
             <div  class="col-md-2" align="center" >
-                <div style="width: 250px;" class="form-group mx-sm-3 mb-2">
-                    <select  class="form-control" id="entryPlaceId">
+                <div style="width: 250px;" class="form-group ">
+                    <select class="form-control" id="entryPlaceId">
+                        <option value="">Firma Seçiniz</option>
                         {{#each companies}}
-                        <option>{{companyName}}</option>
+                        <option value="{{companyName}}">{{companyName}}</option>
                         {{/each}}
                     </select>
                 </div>
             </div>
-            <div class="col-md-2 offset-2">
-                <form id="cityForm" class="form-inline mb-2">
+            <div class="col-md-2 offset-1" align="center">
+                <form  id="cityForm" class="form-inline mb-2">
                     <button align="center" type="submit" class="btn btn-primary">Kaydet</button>
                 </form>
             </div>
@@ -47,20 +48,64 @@
 
             <td>
                 <div class="form-group row">
-                    <div class="col-6">
-                        <input  type="time" value="" id="exitTime">
-                    </div>
-                    <div class="col-6">
-                        <input type="time" value="" id="exitTime2">
-                    </div>
+
+                    <input  class="form-control col-md-6 editModeElement" type="time" value="13:18" id="enter1">
+
+                    <input  class="form-control editModeElement col-md-6" type="time" value="13:18" id="exit1">
                 </div>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+
+            </td>
+
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+
+                </div>
+            </td>
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+
+                </div>
+            </td>
 
 
         </tr>
@@ -75,6 +120,11 @@
 
 
 <script>
-    for(var i = 0;i<7;i++)
-    document.getElementById("day"+i).innerHTML=formatDate(date,i);
+       $( document ).ready(function() {
+        //tarihlerin 1 haftalık düzgün sıralanması için
+        for(var i = 0;i<7;i++)
+            document.getElementById("day"+i).innerHTML=formatDate(date,i);
+    });
+
+
 </script>
