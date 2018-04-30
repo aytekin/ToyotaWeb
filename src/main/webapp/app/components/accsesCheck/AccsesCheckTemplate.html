@@ -39,19 +39,15 @@
         </tr>
         </thead>
         <tbody>
-        {{#each cities}}
-
-        <tr>
+        {{#each searchData}}
+        <tr id="searchTable">
             <td>
                 {{epermit_names}}
             </td>
-
-            <td>
+            <td >
                 <div class="form-group row">
-
-                    <input  class="form-control col-md-6 editModeElement" type="time" value="13:18" id="enter1">
-
-                    <input  class="form-control editModeElement col-md-6" type="time" value="13:18" id="exit1">
+                    <input  class="form-control col-md-6 editId" type="time"  data-id="{{epermitId}}" id="enterTime" >
+                    <input  class="form-control col-md-6 editId" type="time"  data-id="a" id="exitTime">
                 </div>
             </td>
 
@@ -69,15 +65,6 @@
                     <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
 
                     <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
-
-            </td>
-
-            <td>
-                <div class="form-group row">
-                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
-
-                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
-
                 </div>
             </td>
 
@@ -106,8 +93,12 @@
 
                 </div>
             </td>
-
-
+            <td>
+                <div class="form-group row">
+                    <button class="btn btn-success normalModeElement">  <i class="far fa-clock"></i></button>
+                    <button class="btn btn-danger normalModeElement">  <i class="far fa-clock"></i></button>
+                </div>
+            </td>
         </tr>
         {{else}}
         <tr>
@@ -116,15 +107,10 @@
         {{/each}}
         </tbody>
     </table>
-
-
-
 <script>
        $( document ).ready(function() {
         //tarihlerin 1 haftalık düzgün sıralanması için
         for(var i = 0;i<7;i++)
             document.getElementById("day"+i).innerHTML=formatDate(date,i);
     });
-
-
 </script>

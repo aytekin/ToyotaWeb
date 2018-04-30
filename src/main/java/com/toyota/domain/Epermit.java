@@ -146,4 +146,11 @@ public class Epermit {
     public void setEntryPlaces(String entryPlaces) {
         this.entryPlaces = entryPlaces;
     }
+
+    public Epermit(int epermitId) {
+        this.epermitId=epermitId;
+    }
+
+    public Epermit() {
+    }
 }
