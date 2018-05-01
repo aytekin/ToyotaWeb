@@ -62,20 +62,20 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
             for(var i = 0 ; i<this.cities.length;i++)
             {
                 console.log(this.cities.models[i].get("entryCompany").companyName);
-                    if(this.cities.models[i].get("entryCompany").companyName.toString() == companyName
-                        && this.cities.models[i].get("entryDate").toString()==entryDate
-                        && this.cities.models[i].get("exitDate").toString()==exitDate )
-                    {
-                        var data = [{
-                            accompanyPersonal:this.cities.models[i].get("accompanyPersonal"),
-                            epermit_names:this.cities.models[i].get("epermit_names"),
-                            entryDate:this.cities.models[i].get("entryDate"),
-                            enterTime:this.cities.models[i].get("enterTime"),
-                            exitTime:this.cities.models[i].get("exitTime"),
-                        }]
-                        id = this.cities.models[i].get("id");
-                        this.finds.push(data);
-                    }
+                if(this.cities.models[i].get("entryCompany").companyName.toString() == companyName
+                    && this.cities.models[i].get("entryDate").toString()>=entryDate
+                    && this.cities.models[i].get("exitDate").toString()<=exitDate )
+                {
+                    var data = [{
+                        epermit_names:this.cities.models[i].get("epermit_names"),
+                        entryDate:this.cities.models[i].get("entryDate"),
+                        exitDate:this.cities.models[i].get("exitDate"),
+                        enterTime:this.cities.models[i].get("enterTime"),
+                        exitTime:this.cities.models[i].get("exitTime"),
+                    }];
+                    id = this.cities.models[i].get("id");
+                    this.finds.push(data);
+                }
             }
         },
 
@@ -83,24 +83,11 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
             this.render();
         },
         render: function () {
-            for(var i = 0;i<this.cities.length-1;i++){
 
-                var exdate =   new Date(this.cities.models[i].get("exitDate")).toISOString();
-                exdate = exdate.substr(0,10);
-                var endate = new Date(this.cities.models[i].get("entryDate")).toISOString();
-                endate = endate.substr(0,10);
-
-                if(this.cities.models[i].get("wsEducation") == 1){
-                    this.cities.remove(this.cities.models[i]);
-                }else{
-                    this.cities.models[i].set({exitDate:exdate});
-                    this.cities.models[i].set({entryDate:endate});
-                }
-            }
             this.$el.html(cityTemplate({cities: this.cities.toJSON(),
-                                        companies : this.companies.toJSON(),
-                                        finds : this.finds.toJSON()
-                                        }));
+                companies : this.companies.toJSON(),
+                finds : this.finds.toJSON()
+            }));
         }
     });
 });

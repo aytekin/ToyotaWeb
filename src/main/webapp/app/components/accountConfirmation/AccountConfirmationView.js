@@ -1,6 +1,5 @@
 define(['text!components/accountConfirmation/AccountConfirmationTemplate.html'], function (template) {
     var userTemplate = Handlebars.compile(template);
-    days(template);
     var UserModel = Backbone.Model.extend({
         idAttribute: 'id'
 

@@ -68,7 +68,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         },
         saveAllow:function (e) {
             var date = formatDate(Date.now());
-            console.log(date);
+
             for(var i=0;i<this.changeValue;i++)
             {
                 console.log(this.changeRowEnterTime[i]);
@@ -99,7 +99,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
 
                     }
                     if(value==this.cities.models[i].get("entryCompany").companyName.toString())
-                    {11
+                    {
                         //firma ismi ile ilgili kosul saglanırsa verilerimizi hazırlıyoruz
                         var data = [{
                             entryCompany:this.cities.models[i].get("entryCompany"),
@@ -127,7 +127,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             this.render();
         },
         render: function () {
-            this.$el.html(cityTemplate({searchData:this.searchData.toJSON(),
+            this.$el.html(cityTemplate({searchData: this.searchData.toJSON(),
                                         companies : this.companies.toJSON()}));
         }
     });

@@ -7,19 +7,14 @@
         <form id="cityForm" align="center">
             <div class="row " align="center">
                 <div class="col-md-2 offset-md-3">
-
                     <label for="epermit_names"><strong>Giriş yapacak kişiler</strong></label>
-
                 </div>
                 <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
-
-                        <textarea class="form-control" id="epermit_names" rows="2"></textarea>
-
+                        <textarea class="form-control" name="epermit_names" id="epermit_names" rows="2"></textarea>
                     </div>
                 </div>
             </div>
-
             <div class="row" align="center">
                 <div class="col-md-2 offset-md-3">
 
@@ -29,12 +24,10 @@
                 <div class="col-md-2">
                     <div class="form-group row " id="dp3" style="width:300px;">
 
-                        <input class="form-control datepicker" type="date" value="" id="entryDate">
+                        <input class="form-control datepicker" type="date" name="entryDate" value="" id="entryDate">
 
                     </div>
                 </div>
-
-
             </div>
 
             <div class="row" align="center">
@@ -46,7 +39,7 @@
                 <div class="col-md-2" >
                     <div class="form-group row " style="width:300px;">
 
-                        <input class="form-control datepicker" type="date" value="" id="exitDate">
+                        <input class="form-control datepicker" name="exitDate" type="date" value="" id="exitDate">
 
                     </div>
                 </div>
@@ -65,13 +58,13 @@
                     <div class="row" align="left">
                         <div class="form-group col-md-5" align="left" >
 
-                            <input align="left" class="form-control" type="time" value="" id="enterTime">
+                            <input align="left" class="form-control" type="time" name="enterTime" value="" id="enterTime">
 
                         </div>
 
                         <div  align="right" class="form-group col-md-5">
 
-                            <input class="form-control" type="time" value="" id="exitTime">
+                            <input class="form-control" type="time" value="" name="exitTime" id="exitTime">
 
                         </div>
                     </div>
@@ -80,10 +73,6 @@
 
 
             </div>
-
-
-
-
             <div class="row" align="center">
                 <div class="col-md-2 offset-md-3">
 
@@ -93,7 +82,7 @@
                 <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
 
-                        <select class="form-control" id="entryCompany">
+                        <select class="form-control" id="entryCompany" name="company">
                             {{#each company}}
                             <option>{{companyName}}</option>
                             {{/each}}
@@ -113,7 +102,7 @@
                 <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
 
-                        <select  multiple="multiple" class="form-control" id="rfentryName">
+                        <select  multiple="multiple" class="form-control" name="rfentry" id="rfentryName">
                             {{#each rfentry}}
                             <option>{{rfentryName}}</option>
                             {{/each}}
@@ -134,7 +123,7 @@
                 <div class="col-md-2" >
                     <div class="form-group row " style="width:300px;">
 
-                        <select  multiple="multiple" class="form-control" id="entryPlaces">
+                        <select  multiple="multiple" class="form-control" name="place" id="entryPlaces">
                             {{#each places}}
                             <option>{{placeName}}</option>
                             {{/each}}
@@ -151,14 +140,9 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group row " style="width:300px;">
-                        <select class="form-control" id="accompanyPersonal">
-                            {{#each users}}
-                            <option>{{userName}}</option>
-                            {{/each}}
-                        </select>
+                        <input type="text" style="width: 300px" class="form-control " id="accompanyPersonal" name="accompanyPersonal">
                     </div>
                 </div>
-
             </div>
 
 
@@ -170,7 +154,6 @@
                 </div>
                 <div class="col-md-3" >
                     <div class="row" align="center">
-
                             <label class="radio-inline">
                                 <input type="radio" name="wsConfirm" value="Evet"><strong>Evet</strong>
                             </label>
@@ -179,29 +162,57 @@
                             <label class="radio-inline">
                                 <input type="radio" name="wsConfirm" value="Hayir"><strong>Hayır</strong>
                             </label>
-
-
-
                     </div>
                 </div>
             </div>
             <div class="row" align="center">
                 <div class="col-md-2 offset-md-5">
                     <div class="form-group row " style="width:300px;">
-                        <button style="width:300px;" type="submit" class="btn btn-primary btn-block">Oluştur</button>
+                        <button style="width:300px;" type="submit" class="btn btn-primary btn-block" id="mrb">Oluştur</button>
                     </div>
                 </div>
             </div>
-
-
 
         </form>
         </br></br></br></br>
     </div>
 
 </div>
-
-
+<script>
+    $().ready(function() {
+        // validate signup form on keyup and submit
+        $("#cityForm").validate({
+            rules: {
+                epermit_names: {
+                    required: true,
+                    minlength: 7
+                },
+                entryDate : "required",
+                exitDate : "required",
+                enterTime : "required",
+                exitTime : "required",
+                accompanyPersonal :"required",
+                company:"required",
+                rfentry:"required",
+                place:"required"
+            },
+            messages: {
+                place:"Seçim Yapmak Zorunludur",
+                company:"Seçim Yapmak Zorunludur ",
+                rfentry:"Seçim Yapmak Zorunludur",
+                accompanyPersonal:"Personel İsmi Giriniz",
+                epermit_names:{
+                    required:"İsimler Bos Bırakılamaz",
+                    minlength:"İsim Minimum 7 karakter Olmalıdır"
+                },
+                entryDate: "Giris Tarihi Zorunludur",
+                exitDate: "Çıkış Tarihi Zorunludur",
+                enterTime: "Giris Zamanı Zorunludur",
+                exitTime: "Çıkış Zamanı Zorunludur"
+            }
+        });
+    });
+</script>
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function(){
         var date =new Date();
@@ -211,7 +222,6 @@
             totaldue =this.value;
             document.getElementById('exitDate').min = totaldue;
             document.getElementById('exitDate').max = ChangeDate(totaldue);
-
         });
     });
 </script>

@@ -14,6 +14,9 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
 
         el: "#content",
         initialize: function () {
+            this.newModel = new CityCollection();
+            this.listenTo(this.cities, "reset add change remove", this.render);
+
             this.cities = new CityCollection();
             this.listenTo(this.cities, "reset add change remove", this.render);
             this.cities.fetch({reset: true});
@@ -28,11 +31,38 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
             var city = this.cities.findWhere({epermitId: id});
             city.set("epermitStatus", value);
             city.save();
-
-
+            this.render();
         },
         render: function () {
-            this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
+            editModel(this.cities,this.newModel);
+            editDate(this.newModel);
+            this.$el.html(cityTemplate({cities: this.newModel.toJSON()}));
         }
     });
+    function editModel(editModel,newModel) {
+        for(var i=0;i<editModel.length;i++)
+        {
+            if(editModel.models[i].get("epermitStatus")!=1)
+            {
+                newModel.push(editModel.models[i]);
+            }
+        }
+        for(var i=0;i<newModel.length;i++)
+        {
+            if(newModel.models[i].get("epermitStatus")==1)
+            {
+                newModel.remove(newModel.models[i]);
+            }
+        }
+    }
+    function editDate(model) {
+        for(var i = 0;i<model.length;i++){
+            var exdate = new Date(model.models[i].get("exitDate")).toISOString();
+            exdate = exdate.substr(0,10);
+            var endate = new Date(model.models[i].get("entryDate")).toISOString();
+            endate = endate.substr(0,10);
+            model.models[i].set({exitDate:exdate});
+            model.models[i].set({entryDate:endate});
+        }
+    }
 });

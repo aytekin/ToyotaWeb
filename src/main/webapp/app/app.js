@@ -8,7 +8,8 @@ requirejs.config({
         'underscore': 'assets/lib/underscore',
         'bootstrap': 'assets/lib/bootstrap.bundle.min',
         'utilities': 'utils/utility',
-        'router': 'router'
+        'router': 'router',
+        'validate':'assets/lib/jquery.validate.min'
     },
     shim: {
         'backbone': {
@@ -16,6 +17,9 @@ requirejs.config({
         },
         'bootstrap': {
             deps: ['jquery']
+        },
+        'validate':{
+            deps:['jquery']
         }
     }
 });
@@ -25,7 +29,8 @@ require([
     'jquery',
     'underscore',
     'handlebars',
-    'bootstrap'
+    'bootstrap',
+    'validate'
 ], function (Backbone, Jquery, Underscore, Handlebars) {
     window.Handlebars = Handlebars;
 

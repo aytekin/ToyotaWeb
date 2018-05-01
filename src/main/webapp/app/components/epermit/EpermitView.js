@@ -62,21 +62,18 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
         saveCity: function (e) {
             e.preventDefault();
             var companyId = 0;
-            var rfEntryId = 0;
-            var personalId = 0;
-
             var wsConfirm = $("input:radio[name=wsConfirm]:checked").val();
-            var wsConfirms=1;
+            var wsConfirms=0;
             if(wsConfirm=="Evet")
-                wsConfirms=0;
+                wsConfirms=1;
 
-            var times = $("#exitTime").val();
-            var time = $("#enterTime").val();
             var PlaceName = $("#entryPlaces").val();
             var places = "";
             var CompanyName =$("#entryCompany").val();
             var RfentryName =$("#rfentryName").val();
+            var rfEntrys = "";
             var PersonalName = $("#accompanyPersonal").val();
+
             for(var i = 0 ; i<(this.places.length);i++)
             {
 
@@ -97,31 +94,31 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             }
             for(var i = 0 ; i<(this.rfentry.length);i++)
             {
-                if(this.rfentry.models[i].get("rfentryName")==RfentryName)
+                for(var j = 0;j < RfentryName.length;j++)
                 {
-                    rfEntryId=this.rfentry.models[i].get("id");
+                    if(this.rfentry.models[i].get("rfentryName")==RfentryName)
+                    {
+                        rfEntrys+=RfentryName[j]+" , ";
+                    }
                 }
-            }
 
-            for(var i = 0 ; i<(this.users.length);i++)
-            {
-                if(this.users.models[i].get("userName")==PersonalName)
-                {
-                    personalId=this.users.models[i].get("id");
-                }
             }
+            rfEntrys=rfEntrys.substring(0,rfEntrys.length-3);
+            places=places.substring(0,places.length-3);
+
             var city = new CityModel({
                 epermit_names:$("#epermit_names").val(),
                 entryDate:$("#entryDate").val(),
                 exitDate:$("#exitDate").val(),
                 entryCompany:companyId,
-                reasonfentry:rfEntryId,
-                accompanyPersonal:personalId,
-                entryPlaces :places.substring(0,places.length-3),
+                reasonfentry:rfEntrys,
+                accompanyPersonal:PersonalName,
+                entryPlaces :places,
                 exitTime:$("#exitTime").val()+":00",
                 enterTime:$("#enterTime").val()+":00",
                 wsEducation:wsConfirms,
             });
+
             var names = "";
             names=$("#epermit_names").val().toString();
             var temp = "";
