@@ -1,3 +1,30 @@
+var temp="";
+Handlebars.registerHelper("if", function (date) {
+    var template =
+        "  <table class=\"table table-hover table-light mt-2 text-center\">\n" +
+        "\n" +
+        "<thead class=\"thead-light\">"+
+        "<tr>\n" +
+        "<th scope=\"col\">Giriş Yapacak Kişiler</th>\n" +
+        "<th scope=\"col\" id =\"day0\">"+formatDateTree(date,0)+"</th>\n" +
+        "<th scope=\"col\" id=\"day1\">"+formatDateTree(date,1)+"</th>\n" +
+        "<th scope=\"col\" id=\"day2\">"+formatDateTree(date,2)+"</th>\n" +
+        "<th scope=\"col\" id=\"day3\">"+formatDateTree(date,3)+"</th>\n" +
+        "<th scope=\"col\" id=\"day4\">"+formatDateTree(date,4)+"</th>\n" +
+        "<th scope=\"col\" id=\"day5\">"+formatDateTree(date,5)+"</th>\n" +
+        "<th scope=\"col\" id=\"day6\">"+formatDateTree(date,6)+"</th>\n" +
+        "</tr>";
+    var control=date ;
+    if(control==temp)
+    {
+        return null;
+    }
+    temp=date;
+    console.log();
+    return new Handlebars.SafeString(
+        template
+    );
+});
 define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (template) {
     days(template);
     var cityTemplate = Handlebars.compile(template);
@@ -33,7 +60,6 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             this.searchData = new CityCollection();
             this.listenTo(this.searchData,"reset and remove",this.render);
 
-
             //degisiklik yapilan satirlarin idlerini burada tuttuk
             this.changeRowId = [];
             //degisiklik yapilan satirlarin saat dilimlerini burada tuttuk
@@ -68,7 +94,6 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         },
         saveAllow:function (e) {
             var date = formatDate(Date.now());
-            console.log(date);
             for(var i=0;i<this.changeValue;i++)
             {
                 console.log(this.changeRowEnterTime[i]);
@@ -83,6 +108,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             alert("tamam");
         },
         searchRecord: function (e) {
+            temp="";
             //select listte bir değişme olduysa
             var value = e.currentTarget.value;
             //modelimizin arama verilerinden once icini temizliyoruz
@@ -103,10 +129,12 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
                         //firma ismi ile ilgili kosul saglanırsa verilerimizi hazırlıyoruz
                         var data = [{
                             epermitId:this.cities.models[i].get("epermitId"),
-                            entryCompany:this.cities.models[i].get("entryCompany"), epermit_names:this.cities.models[i].get("epermit_names"),
+                            entryCompany:this.cities.models[i].get("entryCompany"),
+                            epermit_names:this.cities.models[i].get("epermit_names"),
                             exitTime:this.cities.models[i].get("exitTime"),
                             enterTime:this.cities.models[i].get("enterTime"),
-                            wsEducation:this.cities.models[i].get("wsEducation")
+                            wsEducation:this.cities.models[i].get("wsEducation"),
+                            entryDate:editDate(this.cities.models[i].get("entryDate"))
                         }];
                         //modelimize ekliyoruz
                         this.searchData.push(data);
@@ -135,7 +163,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         var date = Date.now();
         formatDate(date);
     }
-    function formatDate(date) {
+    function editDate(date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),

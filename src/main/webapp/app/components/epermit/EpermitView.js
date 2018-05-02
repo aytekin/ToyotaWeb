@@ -106,33 +106,36 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             rfEntrys=rfEntrys.substring(0,rfEntrys.length-3);
             places=places.substring(0,places.length-3);
 
-            var city = new CityModel({
-                epermit_names:$("#epermit_names").val(),
-                entryDate:$("#entryDate").val(),
-                exitDate:$("#exitDate").val(),
-                entryCompany:companyId,
-                reasonfentry:rfEntrys,
-                accompanyPersonal:PersonalName,
-                entryPlaces :places,
-                exitTime:$("#exitTime").val()+":00",
-                enterTime:$("#enterTime").val()+":00",
-                wsEducation:wsConfirms,
-            });
-
-            var names = "";
-            names=$("#epermit_names").val().toString();
-            var temp = "";
+            var names = $("#epermit_names").val()+"\n";
+            var epermit = [];
+            var kontrol = 0;
+            var index=0;
             for(var i = 0; i < names.length;i++){
 
-                if(names[i] != "\n")
-                    temp += names[i];
-                else
-                    temp += " - ";
+                if(names[i] == "\n")
+                {
+                    epermit [index]= names.substr(kontrol,i);
+                    index++;
+                    kontrol=i+1;
+                }
+            }
+            for(var i=0;i<epermit.length;i++)
+            {
+                var city = new CityModel({
+                    epermit_names:epermit[i],
+                    entryDate:$("#entryDate").val(),
+                    exitDate:$("#exitDate").val(),
+                    entryCompany:companyId,
+                    reasonfentry:rfEntrys,
+                    accompanyPersonal:PersonalName,
+                    entryPlaces :places,
+                    exitTime:$("#exitTime").val()+":00",
+                    enterTime:$("#enterTime").val()+":00",
+                    wsEducation:wsConfirms
+                });
+                this.cities.create(city, {wait: true});
             }
 
-            city.set({epermit_names:temp});
-
-            this.cities.create(city, {wait: true});
             alert("Kayıt Basarılı");
         },
         render: function () {
