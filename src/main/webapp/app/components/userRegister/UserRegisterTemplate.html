@@ -1,38 +1,103 @@
-<div class="container">
-    <form id="registerForm"  style="width: 500px;margin-left: auto;margin-right: auto;" >
-        <div class="row" align="center">
-            <div class="container">
-                <div class="card card-login mx-auto mt-5">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="userName">Name - Surname</label>
-                            <input class="form-control" id="userName" type="text" name="KEmail" aria-describedby="emailHelp" placeholder="name-surname">
+<style>
+    .error{
+        color:red;
+
+    }
+    .backgr{
+
+        background-color: rgba(223, 230, 233,0.7);
+        padding:20px 20px 50px 20px;
+        border: 3px solid rgba(15, 18, 15,0.3);
+        border-radius: 20px 20px;
+    }
+    h2{
+        font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    hr{
+        border: none;
+        height:2px;
+        /* Set the hr color */
+        background-color:rgba(0, 0, 0, 0.56); /* Modern Browsers */
+    }
+    .err{
+        color: #ffffff;
+        background-color: #EA2027;
+    }
+</style>
+<br><br><br>
+
+<div class="container animated zoomIn" id="islem" align="center">
+    <div class="col-md-5 backgr">
+        <div >
+            <img src="http://www.freepngimg.com/download/toyota_logo/4-2-toyota-logo-picture.png" width="90px" height="90px">
+
+            <h2  align="center">Üye Ol</h2><hr>
+            <form align="center" id="signinForm">
+                <div class="form-group">
+                    <label for="userName"><i class="fas fa-user"></i> &nbsp; Ad ve Soyad</label>
+                    <input type="text" id="userName" class="form-control required" name="nameSurname" placeholder="Ad ve Soyad" />
+                </div>
+                <div class="form-group">
+                    <label for="userNickName"><i class="fas fa-user-circle"></i> &nbsp; Kullanıcı Adı</label>
+                    <input type="text" id="userNickName" class="form-control required" name="nameSurname" placeholder="Kullanıcı Adı" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><i class="fas fa-envelope"></i>&nbsp;Email Adresi</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email Adresi">
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> &nbsp; Parola&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Parola" />
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> &nbsp; Parola Tekrar</label>
+                    <input type="password" id="password1" class="form-control" name="password" placeholder="Parola Tekrar" />
+                </div>
+                <div class="err" id="pcheck">
+                   <span><i class="fas fa-exclamation-triangle"></i> &nbsp; Parolalar Uyuşmuyor</span>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-5" align="center" style="margin-top:5px;">
+                        <div class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input" id="confirm" required>
+                            <label class="custom-control-label" for="confirm">Beni Hatırla</label>
                         </div>
-                        <div class="form-group">
-                            <label for="userNickname">UserName</label>
-                            <input class="form-control" id="userNickname" type="text" name="KEmail" aria-describedby="emailHelp" placeholder="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="userPassword">Password</label>
-                            <input class="form-control" id="userPassword" name="KParola" type="password" placeholder="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="userPassword1">Password Again</label>
-                            <input class="form-control" id="userPassword1" name="KParola" type="password" placeholder="password">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> Remember Password
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-outline-success btn-block">Register</button>
-                        <br />
+                    </div>
+                    <div class="col-md-3 offset-2" align="center">
+                        <button align="center" onclick="myfunction()" type="submit" class="btn btn-success active"><i class="fas fa-plus"></i>&nbsp;&nbsp;Kaydet</button>
+
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
+<script type="text/javascript">
+    $('.err').hide();
+        $('#password').on('input',function() {
+
+            var parola = $('#password').val();
+            var parola1 = $('#password1').val();
+
+             if(parola1.length>0 && parola1 != parola)
+                 $('.err').show();
+             else
+                 $('.err').hide();
+
+
+        })
+        $('#password1').on('input',function() {
+
+            var parola = $('#password').val();
+            var parola1 = $('#password1').val();
+            if(parola.length>0 && parola1 != parola)
+                $('.err').show();
+            else
+                $('.err').hide()
+
+        })
+
+
+</script>
