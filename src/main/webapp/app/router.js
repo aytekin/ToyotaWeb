@@ -19,11 +19,16 @@ define(function (require) {
             'epconf':'epconf',
             'wseconf':'wseconf',
             'report':'report',
-            'accountConfirmation':'accountConfirmation'
+            'accountConfirmation':'accountConfirmation',
+            'login':'login'
         },
         home: function () {
             var HomeView = require('components/home/HomeView');
             showView(new HomeView());
+        },
+        login: function () {
+            var LoginView = require('components/userLogin/LoginView');
+            showView(new LoginView());
         },
         city: function () {
             var CityView = require('components/city/CityView');
