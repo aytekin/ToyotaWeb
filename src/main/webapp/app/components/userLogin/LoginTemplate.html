@@ -27,13 +27,16 @@
 </style>
 <br><br><br>
 
-<div class="container animated zoomIn" align="center">
+<div class="container animated zoomIn" id="islem" align="center">
+    <div id="loading">
+        <span> <i class="fas fa-spinner fa-pulse fa-5x"></i></span>
+    </div>
     <div class="col-md-4 backgr">
         <div >
             <img src="http://www.freepngimg.com/download/toyota_logo/4-2-toyota-logo-picture.png" width="90px" height="90px">
 
             <h2  align="center">Giriş Yap</h2><hr>
-            <form align="center" id="signinForm">
+            <form align="center" id="signinForm" autocomplete="off">
                 <div class="form-group">
                     <label for="userName"><i class="fas fa-user"></i> &nbsp; Kullanıcı Adı</label>
                     <input type="text" id="userName" class="form-control required" name="username" placeholder="Kullanıcı Adı" />
@@ -44,7 +47,7 @@
                     <input type="password" id="password" class="form-control" name="password" placeholder="Parola" />
                 </div>
                         <div align="center" class="custom-control custom-checkbox ">
-                            <input type="checkbox" class="custom-control-input" id="confirm" required>
+                            <input align="right" type="checkbox" class="custom-control-input" id="confirm">
                             <label class="custom-control-label" for="confirm">Beni Hatırla</label>
                         </div>
                         <button align="center" type="submit" class="btn btn-primary active"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Giriş</button>
@@ -85,6 +88,21 @@
                 }
             }
         });
+    });
+
+</script>
+<script language="javascript" type="text/javascript">
+
+    $(window).unload(function() {
+        var element = document.getElementById('islem');
+        element.classList.add("lightSpeedOut");
+        alert("casca");
+    });
+    $( document ).ready(function() {
+        $('#loading').hide();
+    });
+    $(selector).load(function() {
+            $('#loading').hide();
     });
 
 </script>

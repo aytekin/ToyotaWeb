@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="app/assets/css/bootstrap.min.css">
+
 <br>
 <br>
 <div class="container">
@@ -24,7 +24,7 @@
                 <td>{{userNickname}}</td>
                 <td>
                     <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="confirm" required>
+                        <input type="checkbox" class="custom-control-input" value="{{userSatatus}}" id="confirm" required>
                         <label class="custom-control-label" for="confirm">Onayla</label>
 
                     </div>
@@ -47,10 +47,9 @@
             </tr>
             {{else}}
 
-                <!---
-                    BOŞ İSE YAPILACAKLAR
-                -->
-
+            <tr>
+                <td colspan="5">Onay Bekleyen Kullanıcı Bulunmamaktadır.</td>
+            </tr>
             {{/each}}
 
             </tbody>

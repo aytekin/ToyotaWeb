@@ -9,7 +9,9 @@ requirejs.config({
         'bootstrap': 'assets/lib/bootstrap.bundle.min',
         'utilities': 'utils/utility',
         'router': 'router',
-        'validate':'assets/lib/jquery.validate.min'
+        'validate':'assets/lib/jquery.validate.min',
+        'clock':'assets/lib/jquery-clock-timepicker.min',
+
     },
     shim: {
         'backbone': {
@@ -19,6 +21,9 @@ requirejs.config({
             deps: ['jquery']
         },
         'validate':{
+            deps:['jquery']
+        },
+        'clock':{
             deps:['jquery']
         }
     }
@@ -30,7 +35,8 @@ require([
     'underscore',
     'handlebars',
     'bootstrap',
-    'validate'
+    'validate',
+    'clock'
 ], function (Backbone, Jquery, Underscore, Handlebars) {
     window.Handlebars = Handlebars;
 
