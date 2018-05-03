@@ -8,6 +8,15 @@ public class UserDto {
     private String userName;
     private String userPassword;
     private String userNickname;
+    private String userEmail;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     public UserDto(){
 
@@ -19,6 +28,7 @@ public class UserDto {
         this.userName=user.getUserName();
         this.userNickname=user.getUserNickname();
         this.userPassword=user.getUserPassword();
+        this.userEmail = user.getUserEmail();
     }
 
     public Integer getId() {

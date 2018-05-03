@@ -32,18 +32,19 @@
             <img src="http://www.freepngimg.com/download/toyota_logo/4-2-toyota-logo-picture.png" width="90px" height="90px">
 
             <h2  align="center">Üye Ol</h2><hr>
-            <form align="center" id="signinForm">
+            <form align="center" id="signinForm" method="POST">
                 <div class="form-group">
                     <label for="userName"><i class="fas fa-user"></i> &nbsp; Ad ve Soyad</label>
                     <input type="text" id="userName" class="form-control required" name="nameSurname" placeholder="Ad ve Soyad" />
                 </div>
                 <div class="form-group">
                     <label for="userNickName"><i class="fas fa-user-circle"></i> &nbsp; Kullanıcı Adı</label>
-                    <input type="text" id="userNickName" class="form-control required" name="nameSurname" placeholder="Kullanıcı Adı" />
+                    <input type="text" id="userNickname" class="form-control required" name="nameSurname" placeholder="Kullanıcı Adı" />
                 </div>
+
                 <div class="form-group">
-                    <label for="exampleInputEmail1"><i class="fas fa-envelope"></i>&nbsp;Email Adresi</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email Adresi">
+                    <label for="userEmail"><i class="fas fa-envelope"></i>&nbsp;Email Adresi</label>
+                    <input type="email" id="userEmail" class="form-control" aria-describedby="emailHelp" name="userEmail"  placeholder="Email Adresi">
                 </div>
 
                 <div class="form-group">
@@ -60,12 +61,12 @@
                 <div class="row">
                     <div class="col-md-5" align="center" style="margin-top:5px;">
                         <div class="custom-control custom-checkbox ">
-                            <input type="checkbox" class="custom-control-input" id="confirm" required>
+                            <input type="checkbox" class="custom-control-input" id="confirm">
                             <label class="custom-control-label" for="confirm">Beni Hatırla</label>
                         </div>
                     </div>
                     <div class="col-md-3 offset-2" align="center">
-                        <button align="center" onclick="myfunction()" type="submit" class="btn btn-success active"><i class="fas fa-plus"></i>&nbsp;&nbsp;Kaydet</button>
+                        <button align="center" type="submit" class="btn btn-success active"><i class="fas fa-plus"></i>&nbsp;&nbsp;Kaydet</button>
 
                     </div>
                 </div>

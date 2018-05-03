@@ -18,6 +18,16 @@ public class User {
     private String userPassword;
     @Column(name="USER_NICKNAME")
     private String userNickname;
+    @Column(name = "USER_EMAIL")
+    private String userEmail;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     public Integer getUserId() {
         return userId;

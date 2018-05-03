@@ -16,27 +16,13 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
             this.cities.fetch({reset: true});
         },
         events: {
-            'submit #registerForm': 'registerForm'
+            'submit #signinForm': 'signinForm'
 
         },
-        registerForm: function (e) {
+        signinForm: function (e) {
 
-            if (document.getElementById("userName").value == "") {
-                alert("User Name is cannot be empty!");
-            }
-            else if (document.getElementById("userNickname").value == "") {
-                alert("User nickname cannot be empty!");
-            }
-            else if (document.getElementById("userPassword").value == "" || document.getElementById("userPassword1").value == "") {
-                alert("User Password cannot be empty!");
-            }
-            else if(document.getElementById("userPassword").value != document.getElementById("userPassword1").value){
-                alert("Passwords do not match")
-            }
-            else if(document.getElementById("userPassword").value.length < 8){
-                alert("Password must be at least 8 characters")
-            }
-            else{
+
+
                 var counter = 0;
                 var x = $("#userNickname").val();
                 for(var i = 0; i < this.cities.length;i++){
@@ -44,29 +30,25 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
                         counter++;
                 }
                 if(counter != 0){
-                    alert("aynı isme sahip")
+                    alert("Girdiğiniz Kullanıcı Adı Zaten Kullanılmaktadır")
                 }
-                else if ($('#userNickname').val().length < 1 ){
-                    alert("this place is cannot be empty!")
-
-
-
-                }else{
+                else{
                     e.preventDefault();
-                    var city = new CityModel({
-                        userName: $("#userName").val(),
-                        userPassword:$("#userPassword").val(),
-                        userNickname:$("#userNickname").val()
+                var city = new CityModel({
+                    userName: $("#userName").val(),
+                    userPassword: $("#password").val(),
+                    userNickname: $("#userNickname").val(),
+                    userEmail: $('#userEmail').val()
 
-                    });
-                    this.cities.create(city, {wait: true});
-                }
+                });
+                this.cities.create(city, {wait: true});
 
-                this.render();
+                 }
 
-            }
+            alert("Kayıt Başarılı.");
+
         },
-        render: function () {
+        render: function() {
             this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
         }
     });

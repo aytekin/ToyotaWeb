@@ -34,6 +34,7 @@ public class UserService {
             user.setUserName(userDto.getUserName());
             user.setUserNickname(userDto.getUserNickname());
             user.setUserPassword(userDto.getUserPassword());
+            user.setUserEmail(userDto.getUserEmail());
 
             userDao.persist(user);
             return user;
@@ -45,6 +46,7 @@ public class UserService {
         user.setUserPassword(userDto.getUserPassword());
         user.setUserNickname(userDto.getUserNickname());
         user.setUserName(userDto.getUserName());
+        user.setUserEmail(userDto.getUserEmail());
         userDao.merge(user);
 
         return user;
