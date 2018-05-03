@@ -1,3 +1,12 @@
+<style media="screen">
+    .noPrint{ display: block; }
+    .yesPrint{ display: block !important; }
+</style>
+
+<style media="print">
+    .noPrint{ display: none; }
+    .yesPrint{ display: block !important; }
+</style>
 
 <div class="col-md-12 mt-5 text-center">
     <h2 style="color:#f8ffd0;" class="animated tada">İş Güvenliği Onayı Bekleyenler</h2></br>
@@ -9,7 +18,7 @@
             <th>Çıkış Tarihi</th>
             <th>Firma</th>
             <th>Eşlik Edecek Personel</th>
-            <th>Onayla</th>
+            <th class="noPrint">Onayla</th>
         </tr>
         </thead>
         <tbody>
@@ -38,7 +47,7 @@
             </td>
 
             <td>
-                <button class="btn btn-success btn-sm confirmEntryPermit normalModeElement" data-id="{{epermitId}}">
+                <button class="btn btn-success btn-sm confirmEntryPermit normalModeElement noPrint" data-id="{{epermitId}}">
                     Onayla &nbsp;
                     <i class="fas fa-check"></i>
                 </button>
@@ -52,4 +61,8 @@
         {{/each}}
         </tbody>
     </table>
+
+    <div  align="right" >
+        <button  class="btn btn-info noPrint" onclick="window.print();"><i class="fas fa-print"></i> &nbsp; Tablo Bilgilerini Yazdır</button>
+    </div>
 </div>
