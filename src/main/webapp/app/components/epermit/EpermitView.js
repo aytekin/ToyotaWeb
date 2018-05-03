@@ -114,7 +114,7 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
 
                 if(names[i] == "\n")
                 {
-                    epermit [index]= names.substr(kontrol,i);
+                    epermit [index]= names.substring(kontrol,i);
                     index++;
                     kontrol=i+1;
                 }

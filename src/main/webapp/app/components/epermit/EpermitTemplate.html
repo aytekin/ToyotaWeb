@@ -1,4 +1,6 @@
-
+<style>
+    .time { display:inline-block; font-size:20px;  text-align:center; max-width:90px; }
+</style>
 <div class="container" style="background-color:rgba(255,255,255,0.50); min-width: max-content;"  >
 
     </br>
@@ -56,16 +58,12 @@
                 <div class="col-md-4">
 
                     <div class="row" align="left">
-                        <div class="form-group col-md-5" align="left" >
-
-                            <input align="left" class="form-control" type="time" name="enterTime" value="" id="enterTime">
-
+                        <div class="form-group col-md-4" >
+                            <input type="text" class="time standard form-control"  name="enterTime" value="09:00" id="enterTime">
                         </div>
 
-                        <div  align="right" class="form-group col-md-5">
-
-                            <input class="form-control" type="time" value="" name="exitTime" id="exitTime">
-
+                        <div  align="right" class="form-group col-md-4 offset-1">
+                            <input type="text" class="time standard form-control"  name="exitTime" id="exitTime"  value="17:00">
                         </div>
                     </div>
 
@@ -223,5 +221,11 @@
             document.getElementById('exitDate').min = totaldue;
             document.getElementById('exitDate').max = ChangeDate(totaldue);
         });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.standard').clockTimePicker();
+
     });
 </script>
