@@ -3,10 +3,12 @@ package com.toyota.service;
 import com.toyota.dao.UserDao;
 import com.toyota.domain.User;
 import com.toyota.dto.UserDto;
+import com.toyota.security.GetHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
+    private GetHash getHash ;
 
     @Transactional(readOnly = true)
     public List<UserDto> findAllUsers()
@@ -28,12 +31,13 @@ public class UserService {
         return userDtoList;
     }
     @Transactional
-    public User saveUser(UserDto userDto)
-    {
+    public User saveUser(UserDto userDto) throws NoSuchAlgorithmException {
             User user = new User();
             user.setUserName(userDto.getUserName());
             user.setUserNickname(userDto.getUserNickname());
-            user.setUserPassword(userDto.getUserPassword());
+            getHash= new GetHash();
+            user.setUserPassword(getHash.HashToPassword(userDto.getUserPassword()));
+           // user.setUserPassword(userDto.getUserPassword());
             user.setUserEmail(userDto.getUserEmail());
 
             userDao.persist(user);

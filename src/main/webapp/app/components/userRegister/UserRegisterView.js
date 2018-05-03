@@ -47,6 +47,8 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
 
             alert("Kayıt Başarılı.");
 
+                this.render();
+
         },
         render: function() {
             this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
