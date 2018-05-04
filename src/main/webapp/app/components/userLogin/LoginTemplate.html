@@ -28,9 +28,6 @@
 <br><br><br>
 
 <div class="container animated zoomIn" id="islem" align="center">
-    <div id="loading">
-        <span> <i class="fas fa-spinner fa-pulse fa-5x"></i></span>
-    </div>
     <div class="col-md-4 backgr">
         <div >
             <img src="http://www.freepngimg.com/download/toyota_logo/4-2-toyota-logo-picture.png" width="90px" height="90px">
@@ -66,43 +63,36 @@
     $().ready(function() {
         // validate signup form on keyup and submit
         $("#signinForm").validate({
+            framework: 'bootstrap',
+            err: {
+                container: 'tooltip'
+            },
             rules:{
                 username:{
                     required:true,
-                    min:6,
-                    max:20
+                    minlength:6,
+                    maxlength:20
                 },
                 password:{
                     required:true,
-                    min:8,
-                    max:20
+                    minlength:8,
+                    maxlength:20
                 }
             },
             messages:{
                 username:{
-                    required:"Kullanıcı Adı Boş Bırakılamaz",
+                    required:"Kullanıcı Adı Boş Bırakılamaz.",
+                    minlength:"Kullanıcı Adı En Az 6 Karakter Olmalıdır.",
+                    maxlength:"Kullanıcı Adı En Fazla 20 Karakter Olabilir. "
 
                 },
                 password:{
-                    required:"Parola Adı Boş Bırakılamaz"
+                    required:"Parola Adı Boş Bırakılamaz.",
+                    minlength:"Parola En Az 8 Karakter Olmalıdır.",
+                    maxlength:"Parola En Fazla 20 Karakter Olabilir. "
                 }
             }
         });
-    });
 
-</script>
-<script language="javascript" type="text/javascript">
-
-    $(window).unload(function() {
-        var element = document.getElementById('islem');
-        element.classList.add("lightSpeedOut");
-        alert("casca");
     });
-    $( document ).ready(function() {
-        $('#loading').hide();
-    });
-    $(selector).load(function() {
-            $('#loading').hide();
-    });
-
 </script>

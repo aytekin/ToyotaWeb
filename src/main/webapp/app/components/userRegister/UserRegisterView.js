@@ -16,10 +16,16 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
             this.cities.fetch({reset: true});
         },
         events: {
-            'submit #signinForm': 'signinForm'
+            'submit #registForm': 'registForm',
+            'on #userNickname':'control'
 
         },
-        signinForm: function (e) {
+        control:function (e) {
+            $("#userName").on("all", function() {
+                alert("asda");
+            });
+        },
+        registForm: function (e) {
 
 
 
@@ -41,11 +47,11 @@ define(['text!components/userRegister/UserRegisterTemplate.html'], function (tem
                     userEmail: $('#userEmail').val()
 
                 });
-                this.cities.create(city, {wait: true});
-
+                    this.cities.create(city, {wait: true});
+                    alert("Kayıt Başarılı.");
                  }
 
-            alert("Kayıt Başarılı.");
+
 
                 this.render();
 
