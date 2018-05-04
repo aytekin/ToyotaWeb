@@ -100,5 +100,42 @@ function  nowDate() {
     if (day.length < 2) day = '0' + day;
     return [year,month,day].join('-');
 }
+function tempx(date) {
+    var year="";
+    var month="";
+    var day ="";
+    if(date!=null)
+    {
+         year = date.substring(0,4);
+         month = date.substring(5,7);
+         day = date.substring(8,10);
+    }
+
+    return [year,month,day].join(',');
+}
+
+function differance(date1,date2) {
+    var diffDays=0;
+    var month1=0;
+    var month2=0;
+    var day1 =0;
+    var day2 =0;
+    if(date1!=null&&date2!=null)
+    {
+        month1 = parseInt(date1.substring(5,7));
+        day1 = parseInt(date1.substring(8,10));
+        month2 = parseInt(date2.substring(5,7));
+        day2 = parseInt(date2.substring(8,10));
+    }
+    if(month1==month2)
+        diffDays=day2-day1;
+    else
+    {
+        diffDays=day2+30-day1;
+    }
+
+    return diffDays;
+}
+
 
 
