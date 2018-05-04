@@ -123,11 +123,12 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         },
         enterId:function (e) {
             var id = $(e.currentTarget).data("id");//epermitId
+            var idName = $(e.currentTarget).attr("id");
+            var enterTime = $("#"+idName).val()+":00";
+            var findDate = idName.substring(idName.length-1,idName.length);
             findDate = parseInt(findDate);
             findDate = formatDate2(this.cities.models[0].get("entryDate"),findDate);
-            var idName = $(e.currentTarget).attr("id");
-            var findDate = idName.substring(idName.length-1,idName.length);
-            var enterTime = $("#"+idName).val()+":00";
+
             var ay = this.searchData.findWhere({epermitId:id});
 
             if(ay.get("enterTime")+":00" != enterTime)
