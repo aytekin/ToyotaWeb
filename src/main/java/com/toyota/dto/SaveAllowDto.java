@@ -23,7 +23,7 @@ public class SaveAllowDto {
 
     public SaveAllowDto(SaveAllow saveAllow)
     {
-
+        this.saveAllowId=saveAllow.getSaveAllowId();
         this.epermitId=saveAllow.getEpermitId();
         this.saveEntryTime=saveAllow.getSaveEntryTime();
         this.saveExitTime=saveAllow.getSaveExitTime();
