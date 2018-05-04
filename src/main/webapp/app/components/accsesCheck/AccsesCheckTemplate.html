@@ -13,6 +13,9 @@
     .exit{
         background-color:rgba(234, 32, 39,0.2);
     }
+    .ws{
+        background-color: rgba(255, 0, 0,0.15);
+    }
 </style>
 
 
@@ -52,39 +55,44 @@
             {{/if}}
         </thead>
         <tbody>
-        <tr id="searchTable">
+            {{#control wsEducation}}
+            <tr id="searchTable">
+            {{/control}}
             <td>
                 {{epermit_names}}
             </td>
+            <td>
+                <div class="form-group row">
+                    <input  type="text" class="time standard form-control col-md-6 enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime0">
+                    <input type="text" class="time standard form-control col-md-6 exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime0">
+                </div>
+            </td>
             <td >
                 <div class="form-group row">
-                    <input type="text" class="time standard form-control enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime1">
-                    <input type="text" class="time standard form-control exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime1">
+                    <input type="text" class="time standard form-control enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime1">
+                    <input type="text" class="time standard form-control exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime1">
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group row">
+                    <input type="text" class="time standard form-control col-md-6 enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime2">
+                    <input type="text" class="time standard form-control col-md-6 exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime2">
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group row">
+                    <input type="text" class="time standard form-control col-md-6 enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime3">
+                    <input type="text" class="time standard form-control col-md-6 exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime3">
 
                 </div>
             </td>
 
             <td>
                 <div class="form-group row">
-                    <input type="text" class="time standard form-control col-md-6 enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime2">
-                    <input type="text" class="time standard form-control col-md-6 exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime2">
-
-
-                </div>
-            </td>
-
-            <td>
-                <div class="form-group row">
-                    <input type="text" class="time standard form-control col-md-6 enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime3">
-                    <input type="text" class="time standard form-control col-md-6 exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime3">
-
-                </div>
-            </td>
-
-            <td>
-                <div class="form-group row">
-                    <input type="text" class="time standard form-control col-md-6 enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime4">
-                    <input type="text" class="time standard form-control col-md-6 exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime4">
+                    <input type="text" class="time standard form-control col-md-6 enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime4">
+                    <input type="text" class="time standard form-control col-md-6 exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime4">
 
 
                 </div>
@@ -92,26 +100,20 @@
 
             <td>
                 <div class="form-group row">
-                    <input type="text" class="time standard form-control col-md-6 enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime5">
-                    <input type="text" class="time standard form-control col-md-6 exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime5">
+                    <input type="text" class="time standard form-control col-md-6 enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime5">
+                    <input type="text" class="time standard form-control col-md-6 exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime5">
 
 
                 </div>
             </td>
             <td>
                 <div class="form-group row">
-                    <input type="text" class="time standard form-control col-md-6 enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime6">
-                    <input type="text" class="time standard form-control col-md-6 exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime6">
+                    <input type="text" class="time standard form-control col-md-6 enter enterId" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime6">
+                    <input type="text" class="time standard form-control col-md-6 exit exitId" value="{{exitTime}}" data-id="{{epermitId}}" id="exitTime6">
 
                 </div>
             </td>
-            <td>
-                <div class="form-group row">
-                    <input type="text" class="time standard form-control col-md-6 enter" value="{{enterTime}}" data-id="{{epermitId}}" id="enterTime7">
-                    <input type="text" class="time standard form-control col-md-6 exit" value="{{enterTime}}" data-id="{{epermitId}}" id="exitTime7">
 
-                </div>
-            </td>
         </tr>
         {{else}}
         <tr>

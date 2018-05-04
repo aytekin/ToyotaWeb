@@ -1,7 +1,7 @@
 var temp="";
 Handlebars.registerHelper("if", function (date) {
     var template =
-        "  <table class=\"table table-hover table-light mt-2 text-center\">\n" +
+        "<table class=\"table table-hover table-light mt-2 text-center\">\n" +
         "\n" +
         "<thead class=\"thead-light\">"+
         "<tr>\n" +
@@ -14,23 +14,44 @@ Handlebars.registerHelper("if", function (date) {
         "<th scope=\"col\" id=\"day5\">"+formatDateTree(date,5)+"</th>\n" +
         "<th scope=\"col\" id=\"day6\">"+formatDateTree(date,6)+"</th>\n" +
         "</tr>";
+
     var control=date ;
     if(control==temp)
     {
         return null;
     }
     temp=date;
-    console.log();
+
     return new Handlebars.SafeString(
         template
     );
 });
+Handlebars.registerHelper("control", function (ws) {
+
+    if(ws==1)
+    {
+        return new Handlebars.SafeString(
+            "<tr class=\"ws\">"
+        );
+    }
+    else
+    {
+        return new Handlebars.SafeString(
+            "<tr>"
+        );
+    }
+});
+
 define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (template) {
     days(template);
     var cityTemplate = Handlebars.compile(template);
-    var CityModel = Backbone.Model.extend({});
-    var SaveAllowModel = Backbone.Model.extend({});
-    var CompanyModel =Backbone.Model.extend({});;
+    var CityModel = Backbone.Model.extend({
+    });
+    var SaveAllowModel = Backbone.Model.extend({
+        idAttribute:'saveAllowId'
+    });
+    var CompanyModel =Backbone.Model.extend({
+    });
     var CityCollection = Backbone.Collection.extend({
         url: "/api/epermit",
         model: CityModel
@@ -38,7 +59,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
     var SaveAllowCollection = Backbone.Collection.extend({
         url:"/api/saveAllow",
         model : SaveAllowModel
-    })
+    });
     var CompanyCollection = Backbone.Collection.extend({
         url: "/api/company",
         model: CompanyModel
@@ -48,6 +69,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         initialize: function () {
             this.saveAllowes = new SaveAllowCollection();
             this.listenTo(this.saveAllowes,"reset and change remove",this.render);
+            this.saveAllowes.fetch({reset:true});
 
             this.companies = new CompanyCollection();
             this.listenTo(this.companies, "reset add change remove", this.render);
@@ -60,52 +82,83 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             this.searchData = new CityCollection();
             this.listenTo(this.searchData,"reset and remove",this.render);
 
-            //degisiklik yapilan satirlarin idlerini burada tuttuk
-            this.changeRowId = [];
-            //degisiklik yapilan satirlarin saat dilimlerini burada tuttuk
-            this.changeRowEnterTime = [];
-            this.changeRowExitTime = [];
-            this.changeValue =0;
-            /*
-              Bu sekilde yapmamızın amacı o satırlardaki verilerin kaydet butonuna bastıgımız zaman hangilerinin olup
-              olmadıgını ogrenibilmek icindi
-            */
         },
         events: {
             'submit #cityForm': 'saveAllow',
             'click .editCity': 'openEditMode',
             'click .cancel': 'cancelUpdate',
             "change #entryPlaceId": "searchRecord",
-            'change .editId':"idFind"
+            'change .enterId':"enterId",
+            'change .exitId':"exitId"
         },
-        idFind:function (e) {
-            var row = $(e.currentTarget).closest("tr");
-            var id = $(e.currentTarget).data("id");
-            if(id=='a')
+        exitId:function (e) {
+            var idName = $(e.currentTarget).attr("id");
+            var findDate = idName.substring(idName.length-1,idName.length);
+            findDate = parseInt(findDate);
+            findDate = formatDate2(this.cities.models[0].get("entryDate"),findDate);
+            var id = $(e.currentTarget).data("id");//epermitId
+            var exitTime =$("#"+idName).val()+":00";
+            var control = 0;
+
+            for(var i=0;i<this.saveAllowes.length;i++)
             {
-                this.changeRowExitTime[this.changeValue] = row.find("input").val();
-                this.changeValue++;
+                var epermit = this.saveAllowes.models[i].get("epermitId").epermitId;
+                var saveDates = this.saveAllowes.models[i].get("saveDate");
+                console.log(epermit+"   "+id);
+                console.log(saveDates+"   "+findDate);
+                if(epermit==id&&saveDates==findDate)
+                {
+                    control++;
+                    var saveId = this.saveAllowes.models[i].get("saveAllowId");
+                    var saveAllow = this.saveAllowes.findWhere({saveAllowId : saveId});
+                    saveAllow.set({saveExitTime: exitTime});
+                    saveAllow.save();
+                    console.log(this.saveAllowes.models[i].get("saveAllowId"));
+                    alert("guncellendi");
+                }
             }
-            else
+            if(control==0)
+                alert("Giris Saati Girilmeden Cikis Saati Güncellenemez");
+
+        },
+        enterId:function (e) {
+            var idName = $(e.currentTarget).attr("id");
+            var findDate = idName.substring(idName.length-1,idName.length);
+            findDate = parseInt(findDate);
+            findDate = formatDate2(this.cities.models[0].get("entryDate"),findDate);
+            var id = $(e.currentTarget).data("id");//epermitId
+            var enterTime = $("#"+idName).val()+":00";
+            var control = 0;
+
+            for(var i=0;i<this.saveAllowes.length;i++)
             {
-                this.changeRowId[this.changeValue]= id;
-                this.changeRowEnterTime[this.changeValue]= row.find("input").val();
+                var epermit = this.saveAllowes.models[i].get("epermitId").epermitId;
+                var saveDates = this.saveAllowes.models[i].get("saveDate");
+                if(epermit==id&&saveDates==findDate)
+                {
+                    control++;
+                    var saveId = this.saveAllowes.models[i].get("saveAllowId");
+                    var saveAllow = this.saveAllowes.findWhere({saveAllowId : saveId});
+                    saveAllow.set({saveEntryTime: enterTime});
+                    saveAllow.save();
+                    console.log(this.saveAllowes.models[i].get("saveAllowId"));
+                    alert("guncellendi");
+                }
+            }
+            if(control==0)
+            {
+                var save = new SaveAllowModel({
+                    epermitId:id,
+                    saveEntryTime:enterTime,
+                    saveExitTime:null,
+                    saveDate:findDate
+                });
+                this.saveAllowes.create(save, {wait: true});
+                alert("kaydedildi");
             }
         },
         saveAllow:function (e) {
-            var date = formatDate(Date.now());
-            for(var i=0;i<this.changeValue;i++)
-            {
-                console.log(this.changeRowEnterTime[i]);
-                var save = new SaveAllowModel({
-                    epermitId:this.changeRowId[i],
-                    saveEntryTime:this.changeRowEnterTime[i]+":00",
-                    saveExitTime:this.changeRowExitTime[i]+":00",
-                    saveDate:date
-                });
-                this.saveAllowes.create(save, {wait: true});
-            }
-            alert("tamam");
+
         },
         searchRecord: function (e) {
             temp="";
@@ -120,9 +173,10 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
                 //gelen value ile firma ismi karşılaştırılıp ona göre bilgiler çekilecek
                 for(var i = 0 ; i<this.cities.length;i++)
                 {
-                    if(this.cities.models[i].get("wsEducation")==0)
+                    if(this.cities.models[i].get("wsEducation")==1)
                     {
-
+                        console.log("adas");
+                        $("#wsConfirm").addClass('ws');
                     }
                     if(value==this.cities.models[i].get("entryCompany").companyName.toString())
                     {
@@ -131,8 +185,8 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
                             epermitId:this.cities.models[i].get("epermitId"),
                             entryCompany:this.cities.models[i].get("entryCompany"),
                             epermit_names:this.cities.models[i].get("epermit_names"),
-                            exitTime:this.cities.models[i].get("exitTime"),
-                            enterTime:this.cities.models[i].get("enterTime"),
+                            exitTime:this.cities.models[i].get("exitTime").substring(0,5),
+                            enterTime:this.cities.models[i].get("enterTime").substring(0,5),
                             wsEducation:this.cities.models[i].get("wsEducation"),
                             entryDate:editDate(this.cities.models[i].get("entryDate"))
                         }];
