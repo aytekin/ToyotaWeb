@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sec="http://www.springframework.org/schema/security" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">           
+	   
+    
+    <sec:http access-decision-manager-ref="accessDecisionManager">
+        <!-- Public sayfalar (ROLE_ANONYMOUS) -->
+        <sec:intercept-url pattern="/api/company" access="ROLE_DENY_ALL"/>
+        <sec:intercept-url pattern="/api/place" access="ROLE_DENY_ALL"/>
+        <sec:intercept-url pattern="/#home" access="ROLE_ANONYMOUS"/>
+        <!-- ROLE_ADMIN -->
+        <sec:intercept-url pattern="/#login" access="ROLE_DENY_ALL"/>
+
+        <!-- Genel koruma. Üstteki kurallarla eşleşmeyenler içir deny. -->
+        <sec:intercept-url pattern="/**" access="ROLE_ANONYMOUS"/>
+
+        <sec:form-login login-page="/index.html" default-target-url="/dashboardRedirect" login-processing-url="/aa/loginProcessing" authentication-failure-url="/aa/login?error=1"
+                        username-parameter="username" password-parameter="password" authentication-success-handler-ref="loginSuccessHandler"/>
+        <sec:logout logout-url="/aa/logout" logout-success-url="/aa/login"/>       
+        <!--<sec:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>-->
+        <!-- Access Denied alındığı durumlarda error sayfasına yönlendirdik. -->
+        <sec:access-denied-handler error-page="/accessDenied.html"/>
+        <sec:headers>
+            <sec:xss-protection />
+            <sec:hsts/>
+            <sec:frame-options policy="SAMEORIGIN"/>
+        </sec:headers>
+        <!-- Tek kullanıcıda max. session sayısı. & Session sonlandığında login sayfasına yönlendirdik. -->
+        <sec:session-management>
+            <sec:concurrency-control max-sessions="3" expired-url="/aa/login" />
+        </sec:session-management>
+    </sec:http> 
+	
+	<!-- Allow methods and paths without csrf -->
+	<bean id="csrfSecurityRequestMatcher" class="com.toyota.security.CsrfSecurityRequestMatcher">
+	</bean>
+	
+    <!-- Spring Security içerisinde kullanılan kullanıcı bilgileri servisi -->
+    <bean id="customUserDetailsService" class="com.toyota.security.CustomUserDetailsService">
+    </bean>
+	
+    <bean id="passwordEncoder" name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg index="0" value="14"/>
+    </bean>  
+	
+    <!-- Giriş yapacak kullanıcı için önce spring security auth, sonra ldap auth deneniyor. -->
+    <sec:authentication-manager><sec:authentication-provider user-service-ref="customUserDetailsService">
+            <sec:password-encoder ref="passwordEncoder">                
+            </sec:password-encoder>                                  
+        </sec:authentication-provider></sec:authentication-manager>
+	
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <constructor-arg ref="roleVoter"/>
+    </bean>
+	
+    <bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
+        <constructor-arg ref="roleHierarchy" />
+    </bean>
+	
+    <bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <property name="hierarchy">
+            <value>                
+                ROLE_ADMIN > ROLE_USER
+                ROLE_USER > ROLE_AUTH
+                ROLE_AUTH > ROLE_ANONYMOUS
+            </value>
+        </property>
+    </bean>
+
+</beans>

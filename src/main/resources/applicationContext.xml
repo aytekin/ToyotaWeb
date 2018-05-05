@@ -52,4 +52,5 @@
             <ref bean='jacksonProvider'/>
         </jaxrs:providers>
     </jaxrs:server>
+    <import resource="applicationContext-security.xml"/>
 </beans>
