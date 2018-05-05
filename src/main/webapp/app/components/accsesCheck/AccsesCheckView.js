@@ -91,34 +91,42 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             'change .enterId':"enterId",
             'change .exitId':"exitId"
         },
+
         exitId:function (e) {
             var idName = $(e.currentTarget).attr("id");
             var findDate = idName.substring(idName.length-1,idName.length);
             findDate = parseInt(findDate);
-            findDate = formatDate2(this.cities.models[0].get("entryDate"),findDate);
             var id = $(e.currentTarget).data("id");//epermitId
+            var search = this.searchData.findWhere({epermitId:id});
+            findDate = formatDate2(search.get("entryDate"),findDate);
             var exitTime =$("#"+idName).val()+":00";
             var control = 0;
-
-            for(var i=0;i<this.saveAllowes.length;i++)
+            var diffDays =  differance(findDate,editDate(search.get("exitDate")));
+            if(diffDays>=0)
             {
-                var epermit = this.saveAllowes.models[i].get("epermitId").epermitId;
-                var saveDates = this.saveAllowes.models[i].get("saveDate");
-                console.log(epermit+"   "+id);
-                console.log(saveDates+"   "+findDate);
-                if(epermit==id&&saveDates==findDate)
+                for(var i=0;i<this.saveAllowes.length;i++)
                 {
-                    control++;
-                    var saveId = this.saveAllowes.models[i].get("saveAllowId");
-                    var saveAllow = this.saveAllowes.findWhere({saveAllowId : saveId});
-                    saveAllow.set({saveExitTime: exitTime});
-                    saveAllow.save();
-                    console.log(this.saveAllowes.models[i].get("saveAllowId"));
-                    alert("guncellendi");
+                    var epermit = this.saveAllowes.models[i].get("epermitId").epermitId;
+                    var saveDates = this.saveAllowes.models[i].get("saveDate");
+                    console.log(epermit+"   "+id);
+                    console.log(saveDates+"   "+findDate);
+                    if(epermit==id&&saveDates==findDate)
+                    {
+                        control++;
+                        var saveId = this.saveAllowes.models[i].get("saveAllowId");
+                        var saveAllow = this.saveAllowes.findWhere({saveAllowId : saveId});
+                        saveAllow.set({saveExitTime: exitTime});
+                        saveAllow.save();
+                        console.log(this.saveAllowes.models[i].get("saveAllowId"));
+                        alert("guncellendi");
+                    }
                 }
+                if(control==0)
+                    alert("Giris Saati Girilmeden Cikis Saati Güncellenemez");
+
             }
-            if(control==0)
-                alert("Giris Saati Girilmeden Cikis Saati Güncellenemez");
+            else
+                alert("Bu Tarihe Giriş Formu Kaydı Olusturulmamıstır");
 
         },
         enterId:function (e) {
@@ -127,41 +135,53 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             var enterTime = $("#"+idName).val()+":00";
             var findDate = idName.substring(idName.length-1,idName.length);
             findDate = parseInt(findDate);
-            findDate = formatDate2(this.cities.models[0].get("entryDate"),findDate);
-
+            var search = this.cities.findWhere({epermitId:id});
+            findDate = formatDate2(search.get("entryDate"),findDate);
             var ay = this.searchData.findWhere({epermitId:id});
-
-            if(ay.get("enterTime")+":00" != enterTime)
+            var company = ay.get("entryCompany").companyId;
+            var exitDate = ay.get("exitDate");
+            var diffDays =  differance(findDate,editDate(search.get("exitDate")));
+            if(diffDays>=0)
             {
-                alert("Girdiginiz Bilgiler Kayıtla Uyusmuyor");
-            }
-            var control = 0;
-            for(var i=0;i<this.saveAllowes.length;i++)
-            {
-                var epermit = this.saveAllowes.models[i].get("epermitId").epermitId;
-                var saveDates = this.saveAllowes.models[i].get("saveDate");
-                if(epermit==id&&saveDates==findDate)
+                if(ay.get("enterTime")+":00" != enterTime)
                 {
-                    control++;
-                    var saveId = this.saveAllowes.models[i].get("saveAllowId");
-                    var saveAllow = this.saveAllowes.findWhere({saveAllowId : saveId});
-                    saveAllow.set({saveEntryTime: enterTime});
-                    saveAllow.save();
-                    console.log(this.saveAllowes.models[i].get("saveAllowId"));
-                    alert("guncellendi");
+                    alert("Girdiginiz Bilgiler Kayıtla Uyusmuyor");
+                }
+                var control = 0;
+                for(var i=0;i<this.saveAllowes.length;i++)
+                {
+                    var epermit = this.saveAllowes.models[i].get("epermitId").epermitId;
+                    var saveDates = this.saveAllowes.models[i].get("saveDate");
+                    if(epermit==id&&saveDates==findDate)
+                    {
+                        control++;
+                        var saveId = this.saveAllowes.models[i].get("saveAllowId");
+                        var saveAllow = this.saveAllowes.findWhere({saveAllowId : saveId});
+                        saveAllow.set({saveEntryTime: enterTime});
+                        saveAllow.save();
+                        console.log(this.saveAllowes.models[i].get("saveAllowId"));
+                        alert("guncellendi");
+                    }
+                }
+                if(control==0)
+                {
+                    var save = new SaveAllowModel({
+                        epermitId:id,
+                        saveEntryTime:enterTime,
+                        saveExitTime:null,
+                        saveDate:findDate,
+                        saveCompany:company,
+                        saveExitDate:exitDate
+                    });
+                    this.saveAllowes.create(save, {wait: true});
+                    alert("kaydedildi");
                 }
             }
-            if(control==0)
-            {
-                var save = new SaveAllowModel({
-                    epermitId:id,
-                    saveEntryTime:enterTime,
-                    saveExitTime:null,
-                    saveDate:findDate
-                });
-                this.saveAllowes.create(save, {wait: true});
-                alert("kaydedildi");
-            }
+            else
+                alert("Bu Tarihe Giriş Formu Kaydı Olusturulmamıstır");
+
+
+
         },
         saveAllow:function (e) {
 
@@ -179,11 +199,6 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
                 //gelen value ile firma ismi karşılaştırılıp ona göre bilgiler çekilecek
                 for(var i = 0 ; i<this.cities.length;i++)
                 {
-                    if(this.cities.models[i].get("wsEducation")==1)
-                    {
-                        console.log("adas");
-                        $("#wsConfirm").addClass('ws');
-                    }
                     if(value==this.cities.models[i].get("entryCompany").companyName.toString())
                     {
                         //firma ismi ile ilgili kosul saglanırsa verilerimizi hazırlıyoruz
@@ -194,7 +209,8 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
                             exitTime:this.cities.models[i].get("exitTime").substring(0,5),
                             enterTime:this.cities.models[i].get("enterTime").substring(0,5),
                             wsEducation:this.cities.models[i].get("wsEducation"),
-                            entryDate:editDate(this.cities.models[i].get("entryDate"))
+                            entryDate:editDate(this.cities.models[i].get("entryDate")),
+                            exitDate:editDate(this.cities.models[i].get("exitDate"))
                         }];
                         //modelimize ekliyoruz
                         this.searchData.push(data);
@@ -216,7 +232,7 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         },
         render: function () {
             this.$el.html(cityTemplate({searchData: this.searchData.toJSON(),
-                                        companies : this.companies.toJSON()}));
+                companies : this.companies.toJSON()}));
         }
     });
     function days(template) {

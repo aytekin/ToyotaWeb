@@ -25,10 +25,25 @@ public class SaveAllow {
     @Column(name="SAVE_EXIT_TIME")
     private Time saveExitTime;
 
+    @OneToOne
+    @JoinColumn(name = "SAVE_COMPANY")
+    private Company saveCompany;
+
     @Column(name="SAVE_DATE")
     private Date saveDate;
 
+    @Column(name="SAVE_EXIT_DATE")
+    private Date saveExitDate;
+
     public SaveAllow() {
+    }
+
+    public Date getSaveExitDate() {
+        return saveExitDate;
+    }
+
+    public void setSaveExitDate(Date saveExitDate) {
+        this.saveExitDate = saveExitDate;
     }
 
     public Date getSaveDate() {
@@ -69,6 +84,14 @@ public class SaveAllow {
 
     public void setEpermitId(Epermit epermitId) {
         this.epermitId = epermitId;
+    }
+
+    public Company getSaveCompany() {
+        return saveCompany;
+    }
+
+    public void setSaveCompany(Company saveCompany) {
+        this.saveCompany = saveCompany;
     }
 }
 

@@ -1,5 +1,6 @@
 package com.toyota.dto;
 
+import com.toyota.domain.Company;
 import com.toyota.domain.Epermit;
 import com.toyota.domain.SaveAllow;
 
@@ -16,7 +17,11 @@ public class SaveAllowDto {
 
     private Time saveExitTime;
 
+    private Company saveCompany;
+
     private Date saveDate;
+
+    private Date saveExitDate;
 
     public SaveAllowDto() {
     }
@@ -28,6 +33,24 @@ public class SaveAllowDto {
         this.saveEntryTime=saveAllow.getSaveEntryTime();
         this.saveExitTime=saveAllow.getSaveExitTime();
         this.saveDate = saveAllow.getSaveDate();
+        this.saveCompany=saveAllow.getSaveCompany();
+        this.saveExitDate=saveAllow.getSaveExitDate();
+    }
+
+    public Date getSaveExitDate() {
+        return saveExitDate;
+    }
+
+    public void setSaveExitDate(Date saveExitDate) {
+        this.saveExitDate = saveExitDate;
+    }
+
+    public Company getSaveCompany() {
+        return saveCompany;
+    }
+
+    public void setSaveCompany(Company saveCompany) {
+        this.saveCompany = saveCompany;
     }
 
     public Date getSaveDate() {

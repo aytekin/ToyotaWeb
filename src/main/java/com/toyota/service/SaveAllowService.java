@@ -30,6 +30,8 @@ public class SaveAllowService {
     public SaveAllow saveAllow(SaveAllowDto saveAllowDto)
     {
         SaveAllow saveAllow = new SaveAllow();
+        saveAllow.setSaveExitDate(saveAllowDto.getSaveExitDate());
+        saveAllow.setSaveCompany(saveAllowDto.getSaveCompany());
         saveAllow.setEpermitId(saveAllowDto.getEpermitId());
         saveAllow.setSaveEntryTime(saveAllowDto.getSaveEntryTime());
         saveAllow.setSaveExitTime(saveAllowDto.getSaveExitTime());
@@ -41,6 +43,8 @@ public class SaveAllowService {
     public SaveAllow updateSaveAllow(SaveAllowDto saveAllowDto)
     {
         SaveAllow saveAllow = saveAllowDao.find(saveAllowDto.getSaveAllowId());
+        saveAllow.setSaveExitDate(saveAllowDto.getSaveExitDate());
+        saveAllow.setSaveCompany(saveAllowDto.getSaveCompany());
         saveAllow.setEpermitId(saveAllowDto.getEpermitId());
         saveAllow.setSaveEntryTime(saveAllowDto.getSaveEntryTime());
         saveAllow.setSaveExitTime(saveAllowDto.getSaveExitTime());
