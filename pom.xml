@@ -112,6 +112,11 @@
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -121,7 +126,7 @@
                 <version>9.2.11.v20150529</version>
                 <configuration>
                     <httpConnector>
-                        <port>8080</port>
+                        <port>8081</port>
                     </httpConnector>
                 </configuration>
             </plugin>

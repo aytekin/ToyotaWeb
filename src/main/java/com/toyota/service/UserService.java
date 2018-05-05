@@ -1,5 +1,6 @@
 package com.toyota.service;
 
+import com.toyota.SendMail.SendMail;
 import com.toyota.dao.UserDao;
 import com.toyota.domain.User;
 import com.toyota.dto.UserDto;
@@ -16,7 +17,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
-    private GetHash getHash ;
+    private GetHash getHash;
+    private SendMail sendMail;
 
     @Transactional(readOnly = true)
     public List<UserDto> findAllUsers()
@@ -35,11 +37,11 @@ public class UserService {
             User user = new User();
             user.setUserName(userDto.getUserName());
             user.setUserNickname(userDto.getUserNickname());
-            getHash= new GetHash();
+            getHash = new GetHash();
             user.setUserPassword(getHash.HashToPassword(userDto.getUserPassword()));
-           // user.setUserPassword(userDto.getUserPassword());
             user.setUserEmail(userDto.getUserEmail());
-
+            sendMail = new SendMail();
+            sendMail.WaitforConfirm(userDto.getUserEmail(),userDto.getUserName());
             userDao.persist(user);
             return user;
     }
