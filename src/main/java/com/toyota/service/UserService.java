@@ -1,24 +1,35 @@
 package com.toyota.service;
 
 import com.toyota.SendMail.SendMail;
+import com.toyota.dao.RoleDao;
 import com.toyota.dao.UserDao;
+import com.toyota.domain.Role;
 import com.toyota.domain.User;
 import com.toyota.dto.UserDto;
 import com.toyota.security.GetHash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private RoleDao roleDao;
+
     private GetHash getHash;
     private SendMail sendMail;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
     public List<UserDto> findAllUsers()
@@ -37,9 +48,20 @@ public class UserService {
             User user = new User();
             user.setUserName(userDto.getUserName());
             user.setUserNickname(userDto.getUserNickname());
-            getHash = new GetHash();
-            user.setUserPassword(getHash.HashToPassword(userDto.getUserPassword()));
+            user.setUserPassword(passwordEncoder.encode(userDto.getUserPassword()));
             user.setUserEmail(userDto.getUserEmail());
+            if(userDto.getRoleNames() != null && !userDto.getRoleNames().isEmpty()) {
+                List<Role> _roles = new ArrayList<Role>();
+                for (String roleName: userDto.getRoleNames()) {
+                    Role role = roleDao.findByRoleName(roleName);
+                    _roles.add(role);
+                }
+                user.setRoles(_roles);
+            } else {
+                Role role = roleDao.findByRoleName("User");
+                List<Role> roles = Arrays.asList(role);
+                user.setRoles(roles);
+            }
             sendMail = new SendMail();
             sendMail.WaitforConfirm(userDto.getUserEmail(),userDto.getUserName());
             userDao.persist(user);

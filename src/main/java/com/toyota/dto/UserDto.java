@@ -2,6 +2,8 @@ package com.toyota.dto;
 
 import com.toyota.domain.User;
 
+import java.util.List;
+
 public class UserDto {
 
     private Integer id;
@@ -9,6 +11,16 @@ public class UserDto {
     private String userPassword;
     private String userNickname;
     private String userEmail;
+
+    public List<String> getRoleNames() {
+        return roleNames;
+    }
+
+    public void setRoleNames(List<String> roleNames) {
+        this.roleNames = roleNames;
+    }
+
+    private List<String> roleNames;
 
     public String getUserEmail() {
         return userEmail;

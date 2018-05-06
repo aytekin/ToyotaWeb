@@ -10,18 +10,18 @@
     
     <sec:http access-decision-manager-ref="accessDecisionManager">
         <!-- Public sayfalar (ROLE_ANONYMOUS) -->
-        <sec:intercept-url pattern="/api/company" access="ROLE_DENY_ALL"/>
-        <sec:intercept-url pattern="/api/place" access="ROLE_DENY_ALL"/>
-        <sec:intercept-url pattern="/#home" access="ROLE_ANONYMOUS"/>
-        <!-- ROLE_ADMIN -->
-        <sec:intercept-url pattern="/#login" access="ROLE_DENY_ALL"/>
+        <!--<sec:intercept-url pattern="/api/company" access="ROLE_DENY_ALL"/>-->
+        <!--<sec:intercept-url pattern="/api/place" access="ROLE_DENY_ALL"/>-->
+        <!--<sec:intercept-url pattern="/#home" access="ROLE_ANONYMOUS"/>-->
+        <!--&lt;!&ndash; ROLE_ADMIN &ndash;&gt;-->
+        <!--<sec:intercept-url pattern="/#login" access="ROLE_DENY_ALL"/>-->
 
         <!-- Genel koruma. Üstteki kurallarla eşleşmeyenler içir deny. -->
         <sec:intercept-url pattern="/**" access="ROLE_ANONYMOUS"/>
 
-        <sec:form-login login-page="/index.html" default-target-url="/dashboardRedirect" login-processing-url="/aa/loginProcessing" authentication-failure-url="/aa/login?error=1"
+        <sec:form-login login-page="/index.html" default-target-url="/index.html" login-processing-url="/api/loginProcessing" authentication-failure-url="/accessDenied.html"
                         username-parameter="username" password-parameter="password" authentication-success-handler-ref="loginSuccessHandler"/>
-        <sec:logout logout-url="/aa/logout" logout-success-url="/aa/login"/>       
+        <sec:logout logout-url="/api/logout" logout-success-url="/index.html"/>
         <!--<sec:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>-->
         <!-- Access Denied alındığı durumlarda error sayfasına yönlendirdik. -->
         <sec:access-denied-handler error-page="/accessDenied.html"/>
@@ -32,7 +32,7 @@
         </sec:headers>
         <!-- Tek kullanıcıda max. session sayısı. & Session sonlandığında login sayfasına yönlendirdik. -->
         <sec:session-management>
-            <sec:concurrency-control max-sessions="3" expired-url="/aa/login" />
+            <sec:concurrency-control max-sessions="3" expired-url="/index.html" />
         </sec:session-management>
     </sec:http> 
 	
