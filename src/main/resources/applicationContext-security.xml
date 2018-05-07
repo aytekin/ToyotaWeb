@@ -8,13 +8,13 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">           
 	   
     
-    <sec:http access-decision-manager-ref="accessDecisionManager">
-        <!-- Public sayfalar (ROLE_ANONYMOUS) -->
-        <!--<sec:intercept-url pattern="/api/company" access="ROLE_DENY_ALL"/>-->
-        <!--<sec:intercept-url pattern="/api/place" access="ROLE_DENY_ALL"/>-->
-        <!--<sec:intercept-url pattern="/#home" access="ROLE_ANONYMOUS"/>-->
-        <!--&lt;!&ndash; ROLE_ADMIN &ndash;&gt;-->
-        <!--<sec:intercept-url pattern="/#login" access="ROLE_DENY_ALL"/>-->
+    <sec:http auto-config="true" access-decision-manager-ref="accessDecisionManager">
+        <sec:intercept-url pattern="/api/epermit" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/api/place" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/api/rfentry" access="ROLE_DIREKTOR"/>
+
+        <sec:intercept-url pattern="/index.html" access="ROLE_ANONYMOUS"/>
+        <sec:intercept-url pattern="/api/accessDenied" access="ROLE_ANONYMOUS"/>
 
         <!-- Genel koruma. Üstteki kurallarla eşleşmeyenler içir deny. -->
         <sec:intercept-url pattern="/**" access="ROLE_ANONYMOUS"/>
@@ -24,7 +24,7 @@
         <sec:logout logout-url="/api/logout" logout-success-url="/index.html"/>
         <!--<sec:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>-->
         <!-- Access Denied alındığı durumlarda error sayfasına yönlendirdik. -->
-        <sec:access-denied-handler error-page="/accessDenied.html"/>
+        <sec:access-denied-handler error-page="/api/accessDenied"/>
         <sec:headers>
             <sec:xss-protection />
             <sec:hsts/>
@@ -64,10 +64,13 @@
 	
     <bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
         <property name="hierarchy">
-            <value>                
-                ROLE_ADMIN > ROLE_USER
-                ROLE_USER > ROLE_AUTH
-                ROLE_AUTH > ROLE_ANONYMOUS
+            <value>
+                ROLE_ADMIN > ROLE_DIREKTOR
+                ROLE_DIREKTOR > ROLE_SECURITY_OFFICIER
+                ROLE_SECURITY_OFFICIER > ROLE_HUMAN_RESOURCES
+                ROLE_HUMAN_RESOURCES > ROLE_PERSONAL
+                ROLE_PERSONAL > ROLE_USER
+                ROLE_USER > ROLE_ANONYMOUS
             </value>
         </property>
     </bean>

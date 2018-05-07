@@ -58,7 +58,7 @@ public class UserService {
                 }
                 user.setRoles(_roles);
             } else {
-                Role role = roleDao.findByRoleName("User");
+                Role role = roleDao.findByRoleName("ROLE_USER");
                 List<Role> roles = Arrays.asList(role);
                 user.setRoles(roles);
             }

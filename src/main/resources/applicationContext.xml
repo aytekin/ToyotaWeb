@@ -61,6 +61,7 @@
             <ref bean="userResource"/>
             <ref bean="epermitResource"/>
             <ref bean="saveAllowResource"/>
+            <ref bean="accessDeniedResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean='jacksonProvider'/>
