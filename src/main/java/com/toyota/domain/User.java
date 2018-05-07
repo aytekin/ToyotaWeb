@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "user")
 @NamedQueries({
         @NamedQuery(name = "User.findAll", query = "SELECT c FROM User c"),
-        @NamedQuery(name = "User.findByUserName", query = "select u from User u where u.userName = :userName")
+        @NamedQuery(name = "User.findByUserName", query = "select u from User u where u.userNickname = :userNickname")
 })
 public class User {
     @Id

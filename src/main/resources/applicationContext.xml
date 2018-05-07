@@ -21,7 +21,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/sauworkshop"/>
         <property name="username" value="root"/>
-        <property name="password" value="3367"/>
+        <property name="password" value="spyware00"/>
     </bean>
     <!-- Entity Manager Factory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -32,12 +32,6 @@
                 <property name="generateDdl" value="true" />
                 <property name="showSql" value="false" />
             </bean>
-        </property>
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-            </props>
         </property>
     </bean>
 
