@@ -19,5 +19,5 @@ public class UserDao {
     public User find(int id){return entityManager.find(User.class,id);}
     public List<User> findAll(){return entityManager.createNamedQuery("User.findAll", User.class).getResultList();}
     public User findByUserName(String userNickname){return entityManager.createNamedQuery("User.findByUserName", User.class).setParameter("userNickname", userNickname).getSingleResult();}
-
+    public User findByUserNamee(String userName){return entityManager.createNamedQuery("User.findByUserNamee",User.class).setParameter("userName",userName).getSingleResult();}
 }
