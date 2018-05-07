@@ -9,23 +9,22 @@
 	   
     
     <sec:http auto-config="true" access-decision-manager-ref="accessDecisionManager">
+
+        <!--
         <sec:intercept-url pattern="/api/epermit/updateEpermit" access="ROLE_HUMAN_RESOURCE"/>
         <sec:intercept-url pattern="/api/epermit/findAllEpermits" access="ROLE_HUMAN_RESOURCE"/>
         <sec:intercept-url pattern="/api/places/findAllPlaces" access="ROLE_HUMAN_RESOURCE"/>
         <sec:intercept-url pattern="/api/company/findAllCompanies" access="ROLE_HUMAN_RESOURCE,ROLE_SECURITY_OFFICER"/>
         <sec:intercept-url pattern="/api/epermit/saveEpermit" access="ROLE_PERSONAL"/>
-
         <sec:intercept-url pattern="/api/saveAllow" access="ROLE_ADMIN,ROLE_HUMAN_RESOURCE,ROLE_SECURITY_OFFICER"/>
         <sec:intercept-url pattern="/api/epermit" access="ROLE_ADMIN,ROLE_DIREKTOR"/>
         <sec:intercept-url pattern="/api/rfentry" access="ROLE_ADMIN,ROLE_DIREKTOR,ROLE_PERSONAL"/>
         <sec:intercept-url pattern="/api/place" access="ROLE_ADMIN,ROLE_DIREKTOR,ROLE_PERSONAL"/>
         <sec:intercept-url pattern="/api/company" access="ROLE_ADMIN,ROLE_DIREKTOR,ROLE_PERSONAL"/>
         <sec:intercept-url pattern="/api/user" access="ROLE_ADMIN,ROLE_DIREKTOR"/>
-
-
         <sec:intercept-url pattern="/index.html" access="ROLE_ANONYMOUS"/>
         <sec:intercept-url pattern="/api/accessDenied" access="ROLE_ANONYMOUS"/>
-
+        -->
         <!-- Genel koruma. Üstteki kurallarla eşleşmeyenler içir deny. -->
         <sec:intercept-url pattern="/**" access="ROLE_ANONYMOUS"/>
 

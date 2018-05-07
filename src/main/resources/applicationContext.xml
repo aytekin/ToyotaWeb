@@ -48,6 +48,7 @@
     <!-- Rest containera rest servisleri tanımlanıyor -->
     <jaxrs:server id="restContainer" address="/">
         <jaxrs:serviceBeans>
+            <ref bean="loginResource"/>
             <ref bean="cityResource"/>
             <ref bean="placeResource"/>
             <ref bean="rfentryResource"/>
@@ -56,7 +57,6 @@
             <ref bean="epermitResource"/>
             <ref bean="saveAllowResource"/>
             <ref bean="accessDeniedResource"/>
-            <ref bean="loginResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean='jacksonProvider'/>

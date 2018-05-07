@@ -26,6 +26,12 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
         url: "/api/saveAllow",
         model: CityModel
     });
+    var LoginModel = Backbone.Model.extend({});
+
+    var LoginCollection = Backbone.Collection.extend({
+        url: "/api/login",
+        model: LoginModel
+    });
     var EpermitCollection = Backbone.Collection.extend({
         url: "/api/epermit",
         model: EpermitModel
@@ -38,6 +44,9 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
     return Backbone.View.extend({
         el: "#content",
         initialize: function () {
+            this.loginModel = new LoginCollection();
+            this.listenTo(this.loginModel, "reset add change remove", this.render);
+            this.loginModel.fetch({reset: true});
 
             this.finds = new CityCollection();
             this.listenTo(this.finds, "reset add change remove", this.render);
@@ -53,6 +62,8 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
             this.cities = new CityCollection();
             this.listenTo(this.cities, "reset add change remove", this.render);
             this.cities.fetch({reset: true});
+
+            this.control=0;
 
         },
         events: {
@@ -109,11 +120,27 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
             this.render();
         },
         render: function () {
+            var model = this.loginModel.models[0].get("userRole");
+            if(model!=null)
+            {
+                var roles = model[0].authority;
+            }
+            if(roles=="ROLE_ADMIN"||roles=="ROLE_DIREKTOR"||roles=="ROLE_HUMAN_RESOURCE")
+            {
+                this.$el.html(cityTemplate({cities: this.cities.toJSON(),
+                    companies : this.companies.toJSON(),
+                    finds : this.finds.toJSON()
+                }));
+            }
+            else
+            {
+                if(this.control==0)
+                alert("Bu sayfaya girme yetkiniz bulunmamaktadır");
+                this.control++;
+                var HomeView = require('components/home/HomeView');
+                showView(new HomeView());
+            }
 
-            this.$el.html(cityTemplate({cities: this.cities.toJSON(),
-                companies : this.companies.toJSON(),
-                finds : this.finds.toJSON()
-            }));
         }
     });
 });

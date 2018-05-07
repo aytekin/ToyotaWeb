@@ -2,6 +2,7 @@ package com.toyota.resource;
 
 import com.toyota.dao.UserDao;
 import com.toyota.domain.CustomSpringUser;
+
 import com.toyota.domain.User;
 import com.toyota.dto.LoginDto;
 import com.toyota.security.LoginSuccessHandler;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import java.util.Collection;
 
 @Component
 @Path("/login")
@@ -22,14 +24,12 @@ public class LoginResource {
     @Autowired
     private LoginSuccessHandler service;
 
-
     @GET
     @Produces("application/json")
     public LoginDto loginControl() {
         LoginDto loginDto = new LoginDto();
         service = new LoginSuccessHandler();
-        com.toyota.domain.User user;
-        com.toyota.dao.UserDao userDao;
+        UserDao userDao;
         //authentication islemi gerceklestiyse giris yapan kisinin bilgilerini user nesnesine atıyoruz
         //user = (User) service.getAuthentication().getPrincipal();
         //logindto'nun nick namesi giris yapan kisinin bilgilerine aktarılıyor
@@ -47,11 +47,11 @@ public class LoginResource {
         loginDto.setFirstName(username);
         userDao = new UserDao();
         if (loginDto.getFirstName() != null) {
-            User users ;
-            users= userDao.findByUserNamee(loginDto.getFirstName());
-            loginDto.setUserName(users.getUserNickname());
-            loginDto.setEmail(users.getUserEmail());
-            loginDto.setUserRole(users.getRoles());
+            //User user = userDao.findBy(loginDto.getFirstName());
+            //loginDto.setUserName(user.getUserNickname());
+            //loginDto.setEmail(user.getUserEmail());
+            //loginDto.setUserRole(user.getRoles());
+            loginDto.setUserRole(((UserDetails) principal).getAuthorities());
         }
         if (loginDto.getFirstName() != null)//Kullanıcı giriş yaptıysa.
             loginDto.setLoginStatus(true);

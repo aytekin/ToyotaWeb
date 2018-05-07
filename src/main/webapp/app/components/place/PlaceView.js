@@ -5,12 +5,24 @@ define(['text!components/place/PlaceTemplate.html'], function (template) {
         url: "/api/place",
         model: CityModel
     });
+    var LoginModel = Backbone.Model.extend({});
+
+    var LoginCollection = Backbone.Collection.extend({
+        url: "/api/login",
+        model: LoginModel
+    });
     return Backbone.View.extend({
         el: "#content",
         initialize: function () {
+            this.loginModel = new LoginCollection();
+            this.listenTo(this.loginModel, "reset add change remove", this.render);
+            this.loginModel.fetch({reset: true});
+
             this.cities = new CityCollection();
             this.listenTo(this.cities, "reset add change remove", this.render);
             this.cities.fetch({reset: true});
+
+            this.control=0;
         },
         events: {
             'submit #cityForm': 'saveCity',
@@ -66,7 +78,24 @@ define(['text!components/place/PlaceTemplate.html'], function (template) {
             this.render();
         },
         render: function () {
-            this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
+
+            var model = this.loginModel.models[0].get("userRole");
+            if(model!=null)
+            {
+                var roles = model[0].authority;
+            }
+            if(roles=="ROLE_ADMIN"||roles=="ROLE_DIREKTOR"||roles=="ROLE_PERSONAL")
+            {
+                this.$el.html(cityTemplate({cities: this.cities.toJSON()}));
+            }
+            else
+            {
+                if(this.control==0)
+                alert("Bu sayfaya girme yetkiniz bulunmamaktadır");
+                this.control++;
+                var HomeView = require('components/home/HomeView');
+                showView(new HomeView());
+            }
         }
     });
 });

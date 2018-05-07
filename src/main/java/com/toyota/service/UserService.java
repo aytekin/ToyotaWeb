@@ -84,7 +84,8 @@ public class UserService {
         {
             user.setUserStatus(userDto.getUserStatus());
         }
-
+        sendMail = new SendMail();
+        sendMail.ConfirmedEmail(userDto.getUserEmail(),userDto.getUserName(), userDto.getRoleNames());
         userDao.merge(user);
 
         return user;

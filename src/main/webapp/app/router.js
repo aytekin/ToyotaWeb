@@ -1,8 +1,17 @@
 define(function (require) {
     "use strict";
+    var LoginModel = Backbone.Model.extend({});
 
+    var LoginCollection = Backbone.Collection.extend({
+        url: "/api/login",
+        model: LoginModel
+    });
     var AppRouter = Backbone.Router.extend({
         initialize: function () {
+            this.loginModel = new LoginCollection();
+            this.listenTo(this.loginModel, "reset add change remove", this.render);
+            this.loginModel.fetch({reset: true});
+
             require('utilities'); //Utility fonksiyonlarını her yerde kullanmak için
         },
         routes: {
@@ -24,10 +33,22 @@ define(function (require) {
         },
         home: function () {
             var HomeView = require('components/home/HomeView');
+            $('#navbarId').hide();//kullanıcı giris yapmamıssa navbarı gorememesi icin gizlendi
+            this.loginModel.fetch({});
+            if(this.loginModel.models[0]!=undefined) {
+                var firstName = this.loginModel.models[0].get("firstName");
+                if (firstName != null)
+                    $('#navbarId').show();
+            }
             showView(new HomeView());
         },
         login: function () {
             var LoginView = require('components/userLogin/LoginView');
+            if(this.loginModel.models[0]!=undefined) {
+                var firstName = this.loginModel.models[0].get("firstName");
+                if (firstName != null)
+                    $('#navbarId').show();
+            }
             showView(new LoginView());
         },
         city: function () {

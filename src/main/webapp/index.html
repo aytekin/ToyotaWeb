@@ -17,7 +17,6 @@
           integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
           crossorigin="anonymous">
 
-
     <style>
     body{
         background-image: url("app/assets/img/bgimage.jpg");
@@ -36,8 +35,9 @@
 
 <body >
 
-<div>
-    <nav class="navbar navbar-expand-sm navbar-default navbar-top navbar-dark bg-primary">
+<div id="navbarId">
+
+    <nav class="navbar navbar-expand-sm navbar-default navbar-top navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,7 +46,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#home"><strong>Anasayfa</strong></a>
                 </li>
-
                 <li class="nav-item active">
                     <a class="nav-link" href="#company">Firma Tanımlama</a>
                 </li>
@@ -74,15 +73,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#accountConfirmation">Hesap Onayı</a>
                 </li>
-                <li class="nav-item active">
-                    <form name="logoutForm" id="logoutForm" action="/api/logout" method="POST">
-                        <button type="submit" class="btn btn-danger btn-sm">Çıkış Yap</button>
-                    </form>
-                </li>
             </ul>
         </div>
     </nav>
-
 </div>
 
 <div id="content" class="container">
@@ -102,7 +95,6 @@
             $(this).removeClass();
         });
     };
-
     $(document).ready(function(){
         $('.js--triggerAnimation').click(function(e){
             e.preventDefault();

@@ -2,16 +2,24 @@ define(['text!components/accountConfirmation/AccountConfirmationTemplate.html'],
     var userTemplate = Handlebars.compile(template);
     var UserModel = Backbone.Model.extend({
         idAttribute: 'id'
-
     });
     var UserCollection = Backbone.Collection.extend({
         url: "/api/user",
         model: UserModel
     });
+    var LoginModel = Backbone.Model.extend({});
 
+    var LoginCollection = Backbone.Collection.extend({
+        url: "/api/login",
+        model: LoginModel
+    });
     return Backbone.View.extend({
         el: "#content",
         initialize: function () {
+            this.loginModel = new LoginCollection();
+            this.listenTo(this.loginModel, "reset add change remove", this.render);
+            this.loginModel.fetch({reset: true});
+
             this.users = new UserCollection();
             this.listenTo(this.users, "reset add change remove", this.render);
             this.users.fetch({reset: true});
@@ -19,6 +27,7 @@ define(['text!components/accountConfirmation/AccountConfirmationTemplate.html'],
             this.userStatus = new UserCollection();
             this.listenTo(this.userStatus, "reset add change remove", this.render);
 
+            this.control=0;
         },
         events: {
 
@@ -43,8 +52,25 @@ define(['text!components/accountConfirmation/AccountConfirmationTemplate.html'],
             }
         },
         render: function () {
-            editModel(this.users,this.userStatus);//modelimizi duzenlemek icin fonksiyona modelleri verdik
-            this.$el.html(userTemplate({users: this.userStatus.toJSON()}));
+            var model = this.loginModel.models[0].get("userRole");
+            if(model!=null)
+            {
+                var roles = model[0].authority;
+            }
+            if(roles=="ROLE_ADMIN")
+            {
+                editModel(this.users,this.userStatus);//modelimizi duzenlemek icin fonksiyona modelleri verdik
+                this.$el.html(userTemplate({users: this.userStatus.toJSON()}));
+            }
+            else
+            {
+                if(this.control==0)
+                alert("Bu sayfaya girme yetkiniz bulunmamaktadır");
+                this.control++;
+                var HomeView = require('components/home/HomeView');
+                showView(new HomeView());
+            }
+
         }
     });
     function editModel(model,userStatus) {

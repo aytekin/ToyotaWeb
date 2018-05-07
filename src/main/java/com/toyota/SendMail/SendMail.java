@@ -59,7 +59,7 @@ public class SendMail {
 
         sendFromGMail(from, pass, to, subject, body);
     }
-    public void ConfirmedEmail(String toEmail,String name,String role){
+    public void ConfirmedEmail(String toEmail,String name,List role){
         String from = USER_NAME;
         String pass = PASSWORD;
         String[] to = { toEmail }; // list of recipient email addresses

@@ -64,9 +64,19 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
         url: "/api/company",
         model: CompanyModel
     });
+    var LoginModel = Backbone.Model.extend({});
+
+    var LoginCollection = Backbone.Collection.extend({
+        url: "/api/login",
+        model: LoginModel
+    });
     return Backbone.View.extend({
         el: "#content",
         initialize: function () {
+            this.loginModel = new LoginCollection();
+            this.listenTo(this.loginModel, "reset add change remove", this.render);
+            this.loginModel.fetch({reset: true});
+
             this.saveAllowes = new SaveAllowCollection();
             this.listenTo(this.saveAllowes,"reset and change remove",this.render);
             this.saveAllowes.fetch({reset:true});
@@ -81,6 +91,8 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
 
             this.searchData = new CityCollection();
             this.listenTo(this.searchData,"reset and remove",this.render);
+
+            this.control = 0;
 
         },
         events: {
@@ -231,8 +243,24 @@ define(['text!components/accsesCheck/AccsesCheckTemplate.html'], function (templ
             this.render();
         },
         render: function () {
-            this.$el.html(cityTemplate({searchData: this.searchData.toJSON(),
-                companies : this.companies.toJSON()}));
+            var model = this.loginModel.models[0].get("userRole");
+            if(model!=null)
+            {
+                var roles = model[0].authority;
+            }
+            if(roles=="ROLE_ADMIN"||roles=="ROLE_SECURITY_OFFICER")
+            {
+                this.$el.html(cityTemplate({searchData: this.searchData.toJSON(),
+                            companies : this.companies.toJSON()}));
+            }
+            else
+            {
+                if(this.control==0)
+                alert("Bu sayfaya girme yetkiniz bulunmamaktadır");
+                this.control++;
+                var HomeView = require('components/home/HomeView');
+                showView(new HomeView());
+            }
         }
     });
     function days(template) {
