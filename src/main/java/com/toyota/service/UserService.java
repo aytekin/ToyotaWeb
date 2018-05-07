@@ -46,6 +46,7 @@ public class UserService {
     @Transactional
     public User saveUser(UserDto userDto) throws NoSuchAlgorithmException {
             User user = new User();
+            user.setUserStatus(0);//kullanıcının onay durumu sıfır olarak kaydediliyor
             user.setUserName(userDto.getUserName());
             user.setUserNickname(userDto.getUserNickname());
             user.setUserPassword(passwordEncoder.encode(userDto.getUserPassword()));
@@ -71,10 +72,19 @@ public class UserService {
     public User updateUser(UserDto userDto)
     {
         User user = userDao.find(userDto.getId());
-        user.setUserPassword(userDto.getUserPassword());
-        user.setUserNickname(userDto.getUserNickname());
-        user.setUserName(userDto.getUserName());
-        user.setUserEmail(userDto.getUserEmail());
+        if(userDto.getRoleNames() != null && !userDto.getRoleNames().isEmpty()) {
+            List<Role> _roles = new ArrayList<Role>();
+            for (String roleName: userDto.getRoleNames()) {
+                Role role = roleDao.findByRoleName(roleName);
+                _roles.add(role);
+            }
+            user.setRoles(_roles);
+        }
+        if(userDto.getUserStatus()!=0)
+        {
+            user.setUserStatus(userDto.getUserStatus());
+        }
+
         userDao.merge(user);
 
         return user;

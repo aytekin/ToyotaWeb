@@ -26,10 +26,23 @@ public class User {
     private String userNickname;
     @Column(name = "USER_EMAIL")
     private String userEmail;
+    @Column(name = "USER_STATUS")
+    private int userStatus;
+
+    public int getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(int userStatus) {
+        this.userStatus = userStatus;
+    }
+
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "USER_ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")})
+
+
     private List<Role> roles = new ArrayList<Role>();
 
     public List<Role> getRoles() {

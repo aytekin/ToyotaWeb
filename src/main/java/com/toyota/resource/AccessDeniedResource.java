@@ -19,5 +19,4 @@ public class AccessDeniedResource {
         return new FileInputStream(new File("src/main/webapp/accessDenied.html"));
     }
 
-
 }

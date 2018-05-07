@@ -26,11 +26,6 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
         model: CompanyModel
     });
 
-    var UserModel= Backbone.Model.extend({});
-    var UserCollection = Backbone.Collection.extend({
-        url: "/api/user",
-        model: UserModel
-    });
 
     return Backbone.View.extend({
         el: "#content",
@@ -43,10 +38,6 @@ define(['text!components/epermit/EpermitTemplate.html'], function (template) {
             this.company = new CompanyCollection();
             this.listenTo(this.company, "reset add change remove", this.render);
             this.company.fetch({reset: true});
-
-            this.users = new UserCollection();
-            this.listenTo(this.users, "reset add change remove", this.render);
-            this.users.fetch({reset: true});
 
             this.places = new PlaceCollection();
             this.listenTo(this.places, "reset add change remove", this.render);

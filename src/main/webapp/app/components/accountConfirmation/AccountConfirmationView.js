@@ -16,24 +16,48 @@ define(['text!components/accountConfirmation/AccountConfirmationTemplate.html'],
             this.listenTo(this.users, "reset add change remove", this.render);
             this.users.fetch({reset: true});
 
+            this.userStatus = new UserCollection();
+            this.listenTo(this.userStatus, "reset add change remove", this.render);
+
         },
         events: {
 
             'click .confirm': 'confirm'
         },
-        confirm: function(){
-            var value = 1;
-            var authority = $("#authority").val();
-            var id = $(e.currentTarget).data("id");
-            var user = this.users.findWhere({id: id});
-            user.set("", value);
-            user.save();
+        confirm: function(e){
+            var row = $(e.currentTarget).closest("tr");
+            var status = row.find("#status").is(':checked');//user status durumunu aldık
+            var userRole = row.find("#authority").val();//user status durumunu aldık
 
-
+            var id = $(e.currentTarget).data("id");//Tabloda secili kullanıcının idsi
+            var user = this.users.findWhere({id: id});//fetch edilen modelimizden ıd si eslesen kullanıcı bulduk
+            if(status==true)
+            {
+                user.set({userStatus:1});//user status durumunu 1 olarak set ettik
+                user.save();//guncelledik
+            }
+            if(userRole!=null)
+            {
+                user.set({roleNames:[userRole]});//user rolunu set ettik **!modelimizde liste şeklinde tanımlı oldugundan bu şekilde verdik!**
+                user.save();
+            }
         },
         render: function () {
-            this.$el.html(userTemplate({users: this.users.toJSON()}));
+            editModel(this.users,this.userStatus);//modelimizi duzenlemek icin fonksiyona modelleri verdik
+            this.$el.html(userTemplate({users: this.userStatus.toJSON()}));
         }
     });
-
+    function editModel(model,userStatus) {
+        for(var i = 0 ; i<model.length;i++)
+        {
+            if(model.models[i].get("userStatus")==0)//model icerisinde userStatus durumu 0 olan kullanıcıları yeni modelemize ekledik
+            {
+                userStatus.push(model.models[i]);
+            }
+            if(model.models[i].get("userStatus")==1)//model icerisinde userStatus durumu 1 olan kullanıcıları yeni modelemizde guncellendikten sonra sildik
+            {
+                userStatus.remove(model.models[i]);
+            }
+        }
+    }
 });

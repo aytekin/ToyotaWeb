@@ -11,6 +11,15 @@ public class UserDto {
     private String userPassword;
     private String userNickname;
     private String userEmail;
+    private int userStatus;
+
+    public int getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(int userStatus) {
+        this.userStatus = userStatus;
+    }
 
     public List<String> getRoleNames() {
         return roleNames;
@@ -41,6 +50,7 @@ public class UserDto {
         this.userNickname=user.getUserNickname();
         this.userPassword=user.getUserPassword();
         this.userEmail = user.getUserEmail();
+        this.userStatus=user.getUserStatus();
     }
 
     public Integer getId() {
