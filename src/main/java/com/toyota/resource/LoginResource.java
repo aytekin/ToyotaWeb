@@ -44,16 +44,16 @@ public class LoginResource {
         if (username == "anonymousUser")
             username = null;
 
-        loginDto.setFirtName(username);
+        loginDto.setFirstName(username);
         userDao = new UserDao();
-        if (loginDto.getFirtName() != null) {
-            User users = new User();
-            users= userDao.findByUsernamee(loginDto.getFirtName());
+        if (loginDto.getFirstName() != null) {
+            User users ;
+            users= userDao.findByUserNamee(loginDto.getFirstName());
             loginDto.setUserName(users.getUserNickname());
             loginDto.setEmail(users.getUserEmail());
             loginDto.setUserRole(users.getRoles());
         }
-        if (loginDto.getFirtName() != null)//Kullanıcı giriş yaptıysa.
+        if (loginDto.getFirstName() != null)//Kullanıcı giriş yaptıysa.
             loginDto.setLoginStatus(true);
         else
             loginDto.setLoginStatus(false);//Kullanıcı giriş yapmadıysa login durumunu false yapıyoruz.

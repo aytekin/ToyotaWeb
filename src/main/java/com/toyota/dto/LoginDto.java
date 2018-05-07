@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public class LoginDto {
 
-    private String firtName;
+    private String firstName;
     private String userName;
     private Collection userRole;
     private String email;
@@ -25,12 +25,12 @@ public class LoginDto {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getFirtName() {
-        return firtName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirtName(String firtName) {
-        this.firtName = firtName;
+    public void setFirstName(String firtName) {
+        this.firstName = firtName;
     }
 
     public String getUserName() {
