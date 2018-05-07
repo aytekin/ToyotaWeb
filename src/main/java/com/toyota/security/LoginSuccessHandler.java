@@ -3,6 +3,8 @@ package com.toyota.security;
 import com.toyota.domain.CustomSpringUser;
 import com.toyota.domain.User;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ public class LoginSuccessHandler extends
         SavedRequestAwareAuthenticationSuccessHandler {
 
     private Authentication authentication;
-    private CustomSpringUser cs;
+
 
     public Authentication getAuthentication() {
         return authentication;
@@ -40,21 +42,16 @@ public class LoginSuccessHandler extends
         // record login success of user
         // LOG.info(X kullanicisi basarili sekilde login.);
         // saveToDB(X kullanicisi basarili T tarihin sekilde login.);
-        this.authentication = authentication;
-        Object object= this.getAuthentication().getPrincipal();
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
 
-        User user = new User();
-        cs = new CustomSpringUser(user);
+            System.out.println(username);
 
-        cs = (CustomSpringUser)object;
+            super.onAuthenticationSuccess(request, response, authentication);
+        }
 
 
-        System.out.println(this.getAuthentication().getDetails());
-
-        super.onAuthenticationSuccess(request, response, authentication);
     }
-
-
-
-
 }
