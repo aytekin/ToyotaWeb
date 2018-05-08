@@ -99,6 +99,10 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
             for(var i = 0 ; i<this.cities.length;i++)
             {
                 console.log(this.cities.models[i].get("saveCompany").companyName);
+                console.log(this.cities.models[i].get("saveDate").toString());
+                console.log(this.cities.models[i].get("saveExitDate").toString());
+                console.log(differance(this.cities.models[i].get("saveDate").toString(),entryDate));
+                console.log(differance(this.cities.models[i].get("saveExitDate").toString(),exitDate));
                 if(this.cities.models[i].get("saveCompany").companyName.toString() == companyName
                     && this.cities.models[i].get("saveDate").toString()>=entryDate
                     && this.cities.models[i].get("saveExitDate").toString()<=exitDate )
@@ -110,7 +114,7 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
                         saveEnterTime:this.cities.models[i].get("saveEntryTime"),
                         saveExitTime:this.cities.models[i].get("saveExitTime")
                     }];
-                    id = this.cities.models[i].get("id");
+                    //var id = this.cities.models[i].get("id");
                     this.finds.push(data);
                 }
             }
@@ -128,8 +132,8 @@ define(['text!components/report/ReportTemplate.html'], function (template) {
             if(roles=="ROLE_ADMIN"||roles=="ROLE_DIREKTOR"||roles=="ROLE_HUMAN_RESOURCE")
             {
                 this.$el.html(cityTemplate({cities: this.cities.toJSON(),
-                    companies : this.companies.toJSON(),
-                    finds : this.finds.toJSON()
+                                            companies : this.companies.toJSON(),
+                                            finds : this.finds.toJSON()
                 }));
             }
             else

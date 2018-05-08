@@ -33,7 +33,6 @@ function fnExcelReport()
 
     return (sa);
 }
-
 var date = Date.now();
 function formatDate(date, i) {
     var d = new Date(date),
@@ -58,7 +57,6 @@ function formatDate(date, i) {
 
     return [day, month, year].join('/');
 }
-
 function formatDate2(date, i) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),

@@ -87,11 +87,21 @@ define(['text!components/epconfirmation/epermitConfirmationTemplate.html'], func
     function editDate(model) {
         for(var i = 0;i<model.length;i++){
             var exdate = new Date(model.models[i].get("exitDate")).toISOString();
-            exdate = exdate.substr(0,10);
+            var exitDate = exdate.substr(0,10);
+            var dayLogin = parseInt(exitDate.substring(8,10));
+            if(dayLogin<31)
+                dayLogin++;
+            exitDate = exdate.substring(0,8);
+            exitDate += dayLogin;
             var endate = new Date(model.models[i].get("entryDate")).toISOString();
-            endate = endate.substr(0,10);
-            model.models[i].set({exitDate:exdate});
-            model.models[i].set({entryDate:endate});
+            var entryDate = endate.substring(0,10);
+            var dayLogout = parseInt(entryDate.substring(8,10));
+            if(dayLogout<31)
+                dayLogout++;
+            entryDate = entryDate.substring(0,8);
+            entryDate += dayLogout;
+            model.models[i].set({exitDate:exitDate});
+            model.models[i].set({entryDate:entryDate});
         }
     }
 });
