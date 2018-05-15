@@ -1,2 +1,3 @@
-Geliştirilen bu proje Aytekin Erlale ve Muhammet Recep Çaylak tarafından Toyota için geliştirilmiştir
-(This developed project was developed for Toyota by Aytekin Erlale and Muhammet Recep Çaylak)
+Bu proje Aytekin Erlale ve Muhammet Recep Çaylak tarafından Sakarya Üniversitesi Toyota yazılım ofisi öğrenci alım yarışması için geliştirilmiştir.
+
+(This project was developed for Sakarya University Toyota software office by Aytekin Erlale and Muhammet Recep Çaylak)
